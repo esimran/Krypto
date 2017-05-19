@@ -9,4 +9,5 @@ Online Multiplayer <br />
 Classroom Sessions <br />
 <br />
 Mistakes and Things to Remember: <br />
+Making on pictures turned out to be a hassle <br />
 Formatting for the pictures was incorrect, so I had to restart <br />
