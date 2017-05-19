@@ -3,7 +3,7 @@ Krypto is my favorite math card game and I'm building an app to replicate the ga
 Started May 19, 2017.
 
 Things to add:
-Favorites/saving
-Multiplayer/scorekeeping and Saving Games
-Online Multiplayer
-Classroom Sessions
+Favorites/saving <br />
+Multiplayer/scorekeeping and Saving Games <br />
+Online Multiplayer <br />
+Classroom Sessions <br />
