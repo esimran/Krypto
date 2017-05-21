@@ -5,7 +5,7 @@ Started May 19, 2017.
 Things to add: <br />
 Solve Screen <br />
 Favorites/saving <br />
-Multiplayer/scorekeeping and Saving Games <br />
+Multiplayer/scorekeeping <br />
 Online Multiplayer <br />
 Classroom Sessions <br />
 <br />
