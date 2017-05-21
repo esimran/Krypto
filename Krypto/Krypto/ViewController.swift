@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     private var brain = KryptoBrain()
     @IBAction func next(_ sender: UIButton) {
         setup()
@@ -28,10 +28,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var fourthPlay: UIImageView!
     @IBOutlet weak var fifthPlay: UIImageView!
     @IBOutlet weak var answer: UIImageView!
+    @IBOutlet weak var plus: UIImageView!
+    @IBOutlet weak var minus: UIImageView!
+    @IBOutlet weak var times: UIImageView!
+    @IBOutlet weak var of: UIImageView!
+    @IBOutlet weak var equals: UIImageView!
+    @IBOutlet weak var firstOperator: UIImageView!
+    @IBOutlet weak var secondOperator: UIImageView!
+    @IBOutlet weak var thirdOperator: UIImageView!
+    @IBOutlet weak var fourthOperator: UIImageView!
+    @IBOutlet weak var paranthesis: UIImageView!
+    @IBOutlet weak var firstLeftParanthesis: UIImageView!
+    @IBOutlet weak var secondLeftParanthesis: UIImageView!
+    @IBOutlet weak var thirdLeftParanthesis: UIImageView!
+    @IBOutlet weak var fourthLeftParanthesis: UIImageView!
+    @IBOutlet weak var firstRightParanthesis: UIImageView!
+    @IBOutlet weak var secondRightParanthesis: UIImageView!
+    @IBOutlet weak var thirdRightParanthesis: UIImageView!
+    @IBOutlet weak var fourthRightParanthesis: UIImageView!
     
     var startCards: [UIImageView] = []
     var playCards: [UIImageView] = []
     var originalValues: [String] = []
+    var operatorCards: [UIImageView] = []
+    var operators: [UIImageView] = []
+    var leftParanthesis: [UIImageView] = []
+    var rightParanthesis: [UIImageView] = []
+    var stateOfParanthesis = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,17 +65,29 @@ class ViewController: UIViewController {
         playCards = [
             firstPlay, secondPlay, thirdPlay, fourthPlay, fifthPlay
         ]
+        operatorCards = [
+            plus, minus, times, of
+        ]
+        operators = [
+            firstOperator, secondOperator, thirdOperator, fourthOperator
+        ]
+        leftParanthesis = [
+            firstLeftParanthesis, secondLeftParanthesis, thirdLeftParanthesis, fourthLeftParanthesis
+        ]
+        rightParanthesis = [
+            firstRightParanthesis, secondRightParanthesis, thirdRightParanthesis, fourthRightParanthesis
+        ]
         setup()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func setup(){
-        for image in startCards{
-            let tap = UITapGestureRecognizer(target: self, action:#selector(ViewController.startTapped(_:)))
+    
+    func setup() {
+        for image in startCards {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.startTapped(_:)))
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
             let random = brain.randomize()
@@ -61,45 +96,89 @@ class ViewController: UIViewController {
             image.tag = Int(random)!
             image.isHidden = false
         }
-        for image in playCards{
-            let tap = UITapGestureRecognizer(target: self, action:#selector(ViewController.playTapped(_:)))
+        for image in playCards {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playTapped(_:)))
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
             image.isHidden = true
             image.tag = -1
         }
-        answer.image = UIImage(named: brain.randomize())
-    }
-
-    func resetValues(){
-        for image in startCards{
-            image.isHidden = false
+        for image in operatorCards{
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.defaultOperatorTapped(_:)))
+            image.addGestureRecognizer(tap)
+            image.isUserInteractionEnabled = true
         }
-        for image in playCards{
+        for image in operators {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playOperatorTapped(_:)))
+            image.addGestureRecognizer(tap)
+            image.isUserInteractionEnabled = true
             image.isHidden = true
             image.tag = -1
         }
+        for image in leftParanthesis {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playLeftTapped(_:)))
+            image.addGestureRecognizer(tap)
+            image.isUserInteractionEnabled = true
+            image.isHidden = false
+            image.tag = -1
+            image.image = UIImage(named: " ")
+        }
+        for image in rightParanthesis {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playRightTapped(_:)))
+            image.addGestureRecognizer(tap)
+            image.isUserInteractionEnabled = true
+            image.isHidden = false
+            image.tag = -1
+            image.image = UIImage(named: " ")
+        }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.paranthesisTapped))
+        paranthesis.addGestureRecognizer(tap)
+        paranthesis.isUserInteractionEnabled = true
+        let random = brain.randomize()
+        answer.image = UIImage(named: random)
+        answer.tag = Int(random)!
+        stateOfParanthesis = -1
     }
     
-    func startTapped(_ sender: UITapGestureRecognizer){
+    func resetValues() {
+        for image in startCards {
+            image.isHidden = false
+        }
+        for image in leftParanthesis + rightParanthesis {
+            image.image = UIImage(named: " ")
+            image.isHidden = false
+            image.tag = -1
+        }
+        for image in playCards + operators {
+            image.isHidden = true
+            image.tag = -1
+        }
+        stateOfParanthesis = -1
+        print("reset")
+    }
+    
+    func startTapped(_ sender: UITapGestureRecognizer) {
         let myView = sender.view!
-        if myView.isHidden{
+        if myView.isHidden {
             return
         }
         myView.isHidden = true
         let results = findFirstUnplayed()
         let image = results.image
+        if results.index == -1{
+            return
+        }
         image.tag = myView.tag
         image.image = UIImage(named: String(image.tag))
         image.isHidden = false
-        if results.index == 4{
+        if results.index == 4 {
             checkCompletion()
         }
     }
     
-    func playTapped(_ sender: UITapGestureRecognizer){
+    func playTapped(_ sender: UITapGestureRecognizer) {
         let myView = sender.view!
-        if myView.isHidden{
+        if myView.isHidden {
             return
         }
         myView.isHidden = true
@@ -107,7 +186,63 @@ class ViewController: UIViewController {
         myView.tag = -1
     }
     
-    func findFirstUnplayed() -> (index: Int, image: UIImageView){
+    func defaultOperatorTapped(_ sender: UITapGestureRecognizer) {
+        let myView = sender.view!
+        let results = findFirstUnplayedOperator()
+        let image = results.image
+        if results.index == -1 {
+            return
+        }
+        image.isHidden = false
+        let imageName = brain.decode(tag: myView.tag)
+        image.image = UIImage(named: brain.decode(tag: myView.tag))
+        image.tag = brain.decode(imageName: imageName)
+        if results.index == 3 {
+            checkCompletion()
+        }
+    }
+    
+    func playOperatorTapped(_ sender: UITapGestureRecognizer) {
+        let myView = sender.view!
+        if myView.isHidden {
+            return
+        }
+        myView.isHidden = true
+        myView.tag = -1
+    }
+    
+    func paranthesisTapped(_ sender: UITapGestureRecognizer) {
+        if stateOfParanthesis == -1 {
+            stateOfParanthesis = 0
+        } else {
+            stateOfParanthesis = -1
+        }
+    }
+    
+    func playLeftTapped(_ sender: UITapGestureRecognizer) {
+        let myView = sender.view!
+        if stateOfParanthesis != 0{
+            return
+        }
+        myView.isHidden = false
+        myView.tag = -6
+        stateOfParanthesis = 1
+        updateLeftParanthesis()
+    }
+    
+    func playRightTapped(_ sender: UITapGestureRecognizer) {
+        let myView = sender.view!
+        if stateOfParanthesis != 1 {
+            return
+        }
+        myView.isHidden = false
+        myView.tag = -6
+        stateOfParanthesis = -1
+        updateRightParanthesis()
+        checkCompletion()
+    }
+    
+    func findFirstUnplayed() -> (index: Int, image: UIImageView) {
         for index in 0...4{
             let card = playCards[index]
             if card.tag == -1 {
@@ -117,8 +252,68 @@ class ViewController: UIViewController {
         return (-1, firstPlay)
     }
     
+    func findFirstUnplayedOperator() -> (index: Int, image: UIImageView){
+        for index in 0...3{
+            let card = operators[index]
+            if card.tag == -1 {
+                return (index, card)
+            }
+        }
+        return (-1, firstOperator)
+    }
+    
+    func updateLeftParanthesis() {
+        for image in leftParanthesis {
+            if image.tag == -6 {
+                image.image = UIImage(named: "(")
+            }
+        }
+    }
+    
+    func updateRightParanthesis(){
+        for image in rightParanthesis{
+            if image.tag == -6 {
+                image.image = UIImage(named: ")")
+            }
+        }
+    }
+    
     func checkCompletion(){
-        print("TODO")
+        var numericExpression = ""
+        for i in 0...4 {
+            let cardValue = playCards[i].tag
+            if i < 3 {
+                if leftParanthesis[i].tag == -6 {
+                    numericExpression += "("
+                }
+            }
+            if cardValue != -1 {
+                numericExpression += "playCards[i].tag"
+            } else{
+                return
+            }
+            if i > 0 {
+                if rightParanthesis[i].tag == -6 {
+                    numericExpression += ")"
+                }
+            }
+//            if i < 4 {
+////                let operatorValue = operators[i].tag
+////                print(operatorValue)
+////                if true {
+////                    numericExpression += brain.decode(tag: operatorValue)
+////                } else {
+////                    return
+////                }
+//            }
+//            print(i)
+        }
+        print(numericExpression)
+        let expression = NSExpression(format: numericExpression)
+        let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
+        if result.intValue == Int(answer.tag) {
+            print("Right!")
+        }
     }
 }
 

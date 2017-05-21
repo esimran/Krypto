@@ -228,16 +228,16 @@
                                 <rect key="frame" x="397" y="25" width="72" height="84"/>
                                 <gestureRecognizers/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-rY-1JI">
+                            <imageView userInteractionEnabled="NO" tag="-3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-rY-1JI">
                                 <rect key="frame" x="308" y="115" width="54" height="54"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="÷" translatesAutoresizingMaskIntoConstraints="NO" id="twQ-Ed-feW">
+                            <imageView userInteractionEnabled="NO" tag="-2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="÷" translatesAutoresizingMaskIntoConstraints="NO" id="twQ-Ed-feW">
                                 <rect key="frame" x="372" y="115" width="54" height="54"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="-" translatesAutoresizingMaskIntoConstraints="NO" id="3kP-Fp-dj8">
+                            <imageView userInteractionEnabled="NO" tag="-4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="-" translatesAutoresizingMaskIntoConstraints="NO" id="3kP-Fp-dj8">
                                 <rect key="frame" x="241" y="115" width="54" height="54"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="+" translatesAutoresizingMaskIntoConstraints="NO" id="RAh-5Z-Pmh">
+                            <imageView userInteractionEnabled="NO" tag="-5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="+" translatesAutoresizingMaskIntoConstraints="NO" id="RAh-5Z-Pmh">
                                 <rect key="frame" x="172" y="115" width="54" height="54"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="()" translatesAutoresizingMaskIntoConstraints="NO" id="SaT-Vf-gq5">
@@ -488,16 +488,34 @@
                     </view>
                     <connections>
                         <outlet property="answer" destination="rTM-XK-nQp" id="OZk-BW-zqU"/>
+                        <outlet property="equals" destination="nb8-Kk-cgn" id="pd9-ty-bGE"/>
                         <outlet property="fifthCard" destination="NF7-i0-fVC" id="clH-tU-ozk"/>
                         <outlet property="fifthPlay" destination="qrw-qR-xY5" id="h4Q-v4-gqP"/>
                         <outlet property="firstCard" destination="Sxq-sA-JRq" id="kzV-BZ-cda"/>
+                        <outlet property="firstLeftParanthesis" destination="Y9U-h7-uYc" id="okm-MT-GDc"/>
+                        <outlet property="firstOperator" destination="XlR-lh-3wq" id="8FS-XN-EyJ"/>
                         <outlet property="firstPlay" destination="SVN-i0-Jo1" id="ccP-tI-Cbc"/>
+                        <outlet property="firstRightParanthesis" destination="mgE-VG-gNf" id="2WU-Uj-v05"/>
                         <outlet property="fourthCard" destination="Qjv-lb-wQq" id="4BO-XE-J91"/>
+                        <outlet property="fourthLeftParanthesis" destination="paT-0d-fC6" id="TaP-8p-pKW"/>
+                        <outlet property="fourthOperator" destination="Bmf-P0-hNu" id="Ybc-HX-ICg"/>
                         <outlet property="fourthPlay" destination="7GI-t3-GXv" id="6Nz-rW-qKG"/>
+                        <outlet property="fourthRightParanthesis" destination="bQz-DY-eWc" id="zD7-VQ-f3O"/>
+                        <outlet property="minus" destination="3kP-Fp-dj8" id="YPX-0J-dUe"/>
+                        <outlet property="of" destination="twQ-Ed-feW" id="PQK-UA-4YC"/>
+                        <outlet property="paranthesis" destination="SaT-Vf-gq5" id="m0A-GS-mxf"/>
+                        <outlet property="plus" destination="RAh-5Z-Pmh" id="rqz-oY-13Q"/>
                         <outlet property="secondCard" destination="OxA-GE-yeL" id="imb-rs-HA7"/>
+                        <outlet property="secondLeftParanthesis" destination="uoe-ZB-Ur6" id="Hsb-rn-m0O"/>
+                        <outlet property="secondOperator" destination="eY6-qc-dkD" id="mhR-as-wEA"/>
                         <outlet property="secondPlay" destination="Na5-Y2-vdI" id="OPM-3K-3ME"/>
+                        <outlet property="secondRightParanthesis" destination="iIZ-hR-6hC" id="CTE-hf-Tgj"/>
                         <outlet property="thirdCard" destination="LWl-XT-MCq" id="yJ8-LA-KVo"/>
+                        <outlet property="thirdLeftParanthesis" destination="obY-Xc-hnC" id="ey2-VH-hx8"/>
+                        <outlet property="thirdOperator" destination="CcZ-I5-mQK" id="Xx9-ck-Cfn"/>
                         <outlet property="thirdPlay" destination="mjy-oM-zNW" id="Xb7-G1-sXw"/>
+                        <outlet property="thirdRightParanthesis" destination="sKA-2b-g2V" id="SwV-qU-fLa"/>
+                        <outlet property="times" destination="1CT-rY-1JI" id="jiF-Zt-j7V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Im2-c0-s1n" sceneMemberID="firstResponder"/>
