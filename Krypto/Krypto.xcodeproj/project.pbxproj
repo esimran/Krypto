@@ -14,6 +14,7 @@
 		B11F26A51ECFB70B00E52283 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B11F26A31ECFB70B00E52283 /* LaunchScreen.storyboard */; };
 		B11F26B01ECFB70B00E52283 /* KryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F26AF1ECFB70B00E52283 /* KryptoTests.swift */; };
 		B11F26BB1ECFB70B00E52283 /* KryptoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F26BA1ECFB70B00E52283 /* KryptoUITests.swift */; };
+		B178DEBF1ED0FED2002D824A /* KryptoBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B11F26B61ECFB70B00E52283 /* KryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11F26BA1ECFB70B00E52283 /* KryptoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KryptoUITests.swift; sourceTree = "<group>"; };
 		B11F26BC1ECFB70B00E52283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KryptoBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				B11F269A1ECFB70B00E52283 /* AppDelegate.swift */,
 				B11F269C1ECFB70B00E52283 /* ViewController.swift */,
+				B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */,
 				B11F269E1ECFB70B00E52283 /* Main.storyboard */,
 				B11F26A11ECFB70B00E52283 /* Assets.xcassets */,
 				B11F26A31ECFB70B00E52283 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B11F269D1ECFB70B00E52283 /* ViewController.swift in Sources */,
+				B178DEBF1ED0FED2002D824A /* KryptoBrain.swift in Sources */,
 				B11F269B1ECFB70B00E52283 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +509,7 @@
 				B11F26C11ECFB70B00E52283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B11F26C21ECFB70B00E52283 /* Build configuration list for PBXNativeTarget "KryptoTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +518,7 @@
 				B11F26C41ECFB70B00E52283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B11F26C51ECFB70B00E52283 /* Build configuration list for PBXNativeTarget "KryptoUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +527,7 @@
 				B11F26C71ECFB70B00E52283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
