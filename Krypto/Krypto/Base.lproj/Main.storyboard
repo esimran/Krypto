@@ -210,18 +210,23 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-XT-MCq">
                                 <rect key="frame" x="297" y="25" width="72" height="84"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="Sxq-sA-JRq">
                                 <rect key="frame" x="97" y="25" width="72" height="84"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="NF7-i0-fVC">
                                 <rect key="frame" x="497" y="25" width="72" height="84"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="OxA-GE-yeL">
                                 <rect key="frame" x="197" y="25" width="72" height="84"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qjv-lb-wQq">
                                 <rect key="frame" x="397" y="25" width="72" height="84"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-rY-1JI">
                                 <rect key="frame" x="308" y="115" width="54" height="54"/>
@@ -482,14 +487,25 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="answer" destination="rTM-XK-nQp" id="OZk-BW-zqU"/>
                         <outlet property="fifthCard" destination="NF7-i0-fVC" id="clH-tU-ozk"/>
+                        <outlet property="fifthPlay" destination="qrw-qR-xY5" id="h4Q-v4-gqP"/>
                         <outlet property="firstCard" destination="Sxq-sA-JRq" id="kzV-BZ-cda"/>
+                        <outlet property="firstPlay" destination="SVN-i0-Jo1" id="ccP-tI-Cbc"/>
                         <outlet property="fourthCard" destination="Qjv-lb-wQq" id="4BO-XE-J91"/>
+                        <outlet property="fourthPlay" destination="7GI-t3-GXv" id="6Nz-rW-qKG"/>
                         <outlet property="secondCard" destination="OxA-GE-yeL" id="imb-rs-HA7"/>
+                        <outlet property="secondPlay" destination="Na5-Y2-vdI" id="OPM-3K-3ME"/>
                         <outlet property="thirdCard" destination="LWl-XT-MCq" id="yJ8-LA-KVo"/>
+                        <outlet property="thirdPlay" destination="mjy-oM-zNW" id="Xb7-G1-sXw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Im2-c0-s1n" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pXV-xK-DCQ">
+                    <connections>
+                        <action selector="cardTapped:" destination="ByI-93-HiQ" id="YhV-zt-002"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="19.340329835082461" y="1608.8"/>
         </scene>
