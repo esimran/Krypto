@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     @IBAction func reset(_ sender: UIButton) {
         resetValues()
     }
+    @IBAction func check(_ sender: UIButton) {
+        checkCompletion()
+    }
     @IBOutlet weak var firstCard: UIImageView!
     @IBOutlet weak var secondCard: UIImageView!
     @IBOutlet weak var thirdCard: UIImageView!
@@ -171,9 +174,6 @@ class ViewController: UIViewController {
         image.tag = myView.tag
         image.image = UIImage(named: String(image.tag))
         image.isHidden = false
-        if results.index == 4 {
-            checkCompletion()
-        }
     }
     
     func playTapped(_ sender: UITapGestureRecognizer) {
@@ -197,9 +197,6 @@ class ViewController: UIViewController {
         let imageName = brain.decode(tag: myView.tag)
         image.image = UIImage(named: brain.decode(tag: myView.tag))
         image.tag = brain.decode(imageName: imageName)
-        if results.index == 3 {
-            checkCompletion()
-        }
     }
     
     func playOperatorTapped(_ sender: UITapGestureRecognizer) {
@@ -222,6 +219,10 @@ class ViewController: UIViewController {
     func playLeftTapped(_ sender: UITapGestureRecognizer) {
         let myView = sender.view!
         if stateOfParanthesis != 0{
+            if myView.tag == -6 {
+                myView.tag = -1
+                updateLeftParanthesis()
+            }
             return
         }
         myView.isHidden = false
@@ -233,13 +234,16 @@ class ViewController: UIViewController {
     func playRightTapped(_ sender: UITapGestureRecognizer) {
         let myView = sender.view!
         if stateOfParanthesis != 1 {
+            if myView.tag == -6 {
+                myView.tag = -1
+                updateRightParanthesis()
+            }
             return
         }
         myView.isHidden = false
         myView.tag = -6
         stateOfParanthesis = -1
         updateRightParanthesis()
-        checkCompletion()
     }
     
     func findFirstUnplayed() -> (index: Int, image: UIImageView) {
@@ -266,6 +270,8 @@ class ViewController: UIViewController {
         for image in leftParanthesis {
             if image.tag == -6 {
                 image.image = UIImage(named: "(")
+            } else {
+                image.image = UIImage(named: " ")
             }
         }
     }
@@ -274,46 +280,89 @@ class ViewController: UIViewController {
         for image in rightParanthesis{
             if image.tag == -6 {
                 image.image = UIImage(named: ")")
+            } else {
+                image.image = UIImage(named: " ")
             }
         }
     }
     
-    func checkCompletion(){
+    func checkCompletion() {
         var numericExpression = ""
         for i in 0...4 {
             let cardValue = playCards[i].tag
-            if i < 3 {
+            if i < 4 {
                 if leftParanthesis[i].tag == -6 {
                     numericExpression += "("
                 }
             }
             if cardValue != -1 {
-                numericExpression += "playCards[i].tag"
-            } else{
+                numericExpression += String(cardValue)
+            } else {
                 return
             }
             if i > 0 {
-                if rightParanthesis[i].tag == -6 {
+                if rightParanthesis[i-1].tag == -6 {
                     numericExpression += ")"
                 }
             }
-//            if i < 4 {
-////                let operatorValue = operators[i].tag
-////                print(operatorValue)
-////                if true {
-////                    numericExpression += brain.decode(tag: operatorValue)
-////                } else {
-////                    return
-////                }
-//            }
-//            print(i)
+            if i < 4 {
+                let operatorValue = operators[i].tag
+                if operatorValue != -1 {
+                    numericExpression += brain.expression(tag: operatorValue)
+                } else {
+                    return
+                }
+            }
         }
         print(numericExpression)
         let expression = NSExpression(format: numericExpression)
+        print(expression)
         let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
-        if result.intValue == Int(answer.tag) {
+        print(result)
+        print(answer.tag)
+        if result.intValue == answer.tag {
             print("Right!")
         }
     }
+
+//    func checkCompletion(){
+//        var numericExpression = ""
+//        for i in 0...4 {
+//            let cardValue = playCards[i].tag
+//            if i < 3 {
+//                if leftParanthesis[i].tag == -6 {
+//                    numericExpression += "("
+//                }
+//            }
+//            if cardValue != -1 {
+//                numericExpression += String(cardValue)
+//            } else{
+//                return
+//            }
+//            if i > 0 {
+//                if rightParanthesis[i].tag == -6 {
+//                    numericExpression += ")"
+//                }
+//            }
+//            if i < 4 {
+//                let operatorValue = operators[i].tag
+//                print(operatorValue)
+//                print(numericExpression)
+//                if operatorValue != -1 {
+//                    let added = brain.expression(tag: operatorValue)
+//                    numericExpression += added
+//                } else {
+//                    return
+//                }
+//            }
+//            print(i)c
+//        }
+//        print(numericExpression)
+//        let expression = NSExpression(format: numericExpression)
+//        let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
+//        if result.intValue == Int(answer.tag) {
+//            print("Right!")
+//        }
+//    }
 }
 

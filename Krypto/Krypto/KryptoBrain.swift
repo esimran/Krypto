@@ -35,8 +35,21 @@ struct KryptoBrain {
         }
     }
     
+    public func expression(tag: Int) -> String {
+        switch tag {
+        case -5:
+            return "+"
+        case -4:
+            return "-"
+        case -3:
+            return "*"
+        case -2:
+            return "/"
+        default: return " "
+        }
+    }
+    
     public func decode(imageName: String) -> Int {
-        print(imageName)
         if imageName == "+" {
             return -5
         } else if imageName == "-" {
