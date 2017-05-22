@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     private var brain = KryptoBrain()
     @IBAction func next(_ sender: UIButton) {
-        setup()
+        test()
     }
     @IBAction func reset(_ sender: UIButton) {
         resetValues()
@@ -89,6 +89,7 @@ class ViewController: UIViewController {
     }
     
     func setup() {
+        originalValues.removeAll()
         for image in startCards {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.startTapped(_:)))
             image.addGestureRecognizer(tap)
@@ -182,7 +183,8 @@ class ViewController: UIViewController {
             return
         }
         myView.isHidden = true
-        startCards[originalValues.index(of: String(myView.tag))!].isHidden = false
+        let index = originalValues.index(of: String(myView.tag))!
+        startCards[index].isHidden = false
         myView.tag = -1
     }
     
@@ -314,55 +316,19 @@ class ViewController: UIViewController {
                 }
             }
         }
-        print(numericExpression)
         let expression = NSExpression(format: numericExpression)
-        print(expression)
         let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
-        print(result)
-        print(answer.tag)
         if result.intValue == answer.tag {
             print("Right!")
+        } else {
+            print("Wrong!")
         }
     }
-
-//    func checkCompletion(){
-//        var numericExpression = ""
-//        for i in 0...4 {
-//            let cardValue = playCards[i].tag
-//            if i < 3 {
-//                if leftParanthesis[i].tag == -6 {
-//                    numericExpression += "("
-//                }
-//            }
-//            if cardValue != -1 {
-//                numericExpression += String(cardValue)
-//            } else{
-//                return
-//            }
-//            if i > 0 {
-//                if rightParanthesis[i].tag == -6 {
-//                    numericExpression += ")"
-//                }
-//            }
-//            if i < 4 {
-//                let operatorValue = operators[i].tag
-//                print(operatorValue)
-//                print(numericExpression)
-//                if operatorValue != -1 {
-//                    let added = brain.expression(tag: operatorValue)
-//                    numericExpression += added
-//                } else {
-//                    return
-//                }
-//            }
-//            print(i)c
-//        }
-//        print(numericExpression)
-//        let expression = NSExpression(format: numericExpression)
-//        let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
-//        if result.intValue == Int(answer.tag) {
-//            print("Right!")
-//        }
-//    }
+    
+    func test(){
+        for i in 0...10000 {
+            print(brain.randomize())
+        }
+    }
 }
 
