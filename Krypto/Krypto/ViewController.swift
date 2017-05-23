@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     private var brain = KryptoBrain()
     @IBAction func next(_ sender: UIButton) {
-        test()
+        setup()
     }
     @IBAction func reset(_ sender: UIButton) {
         resetValues()
@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondRightParanthesis: UIImageView!
     @IBOutlet weak var thirdRightParanthesis: UIImageView!
     @IBOutlet weak var fourthRightParanthesis: UIImageView!
+    @IBOutlet weak var label: UILabel!
     
     var startCards: [UIImageView] = []
     var playCards: [UIImageView] = []
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
     var leftParanthesis: [UIImageView] = []
     var rightParanthesis: [UIImageView] = []
     var stateOfParanthesis = -1
+    var originalPoints: [CGPoint] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +82,9 @@ class ViewController: UIViewController {
         rightParanthesis = [
             firstRightParanthesis, secondRightParanthesis, thirdRightParanthesis, fourthRightParanthesis
         ]
+        for image in startCards {
+            originalPoints.append(image.center)
+        }
         setup()
     }
     
@@ -94,11 +99,14 @@ class ViewController: UIViewController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.startTapped(_:)))
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
-            let random = brain.randomize()
+//            let random = brain.randomize()
+            let random = "5"
             originalValues.append(random)
             image.image = UIImage(named: random)
             image.tag = Int(random)!
             image.isHidden = false
+            let drag = UIPanGestureRecognizer(target: self, action: #selector(ViewController.startDragged))
+            image.addGestureRecognizer(drag)
         }
         for image in playCards {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playTapped(_:)))
@@ -142,6 +150,7 @@ class ViewController: UIViewController {
         answer.image = UIImage(named: random)
         answer.tag = Int(random)!
         stateOfParanthesis = -1
+        label.isHidden = true
     }
     
     func resetValues() {
@@ -158,7 +167,7 @@ class ViewController: UIViewController {
             image.tag = -1
         }
         stateOfParanthesis = -1
-        print("reset")
+        label.isHidden = true
     }
     
     func startTapped(_ sender: UITapGestureRecognizer) {
@@ -177,14 +186,41 @@ class ViewController: UIViewController {
         image.isHidden = false
     }
     
+    func startDragged(_ recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        let center = recognizer.view!.center
+        var mark = "MARK"
+        if originalPoints.contains(center){
+            let index = originalPoints.index(of: center)
+            mark = originalValues[index!]
+            originalValues[index!] = "-1"
+            print("done")
+        }
+        if let view = recognizer.view {
+            view.center = CGPoint(x:view.center.x + translation.x,
+                                  y:view.center.y + translation.y)
+        }
+        let view = recognizer.view!
+        recognizer.setTranslation(CGPoint.zero, in: self.view)
+        if recognizer.state == UIGestureRecognizerState.ended {
+            checkForPlayContact(view: view)
+        } else {
+            let index1 = originalValues.index(of: "-1")
+            view.center = originalPoints[index1!]
+            originalValues[index1!] = mark
+        }
+    }
+    
     func playTapped(_ sender: UITapGestureRecognizer) {
         let myView = sender.view!
         if myView.isHidden {
             return
         }
         myView.isHidden = true
-        let index = originalValues.index(of: String(myView.tag))!
-        startCards[index].isHidden = false
+        let index = originalStartingCard(tag: myView.tag)
+        if index != -1 {
+            startCards[index].isHidden = false
+        }
         myView.tag = -1
     }
     
@@ -213,8 +249,14 @@ class ViewController: UIViewController {
     func paranthesisTapped(_ sender: UITapGestureRecognizer) {
         if stateOfParanthesis == -1 {
             stateOfParanthesis = 0
+            label.isHidden = false
+            label.text = "Press a gray box for the left paranthesis or the paranthesis again to stop"
+            makeLeftUnplayedGray()
         } else {
+            label.isHidden = true
             stateOfParanthesis = -1
+            updateLeftParanthesis()
+            updateRightParanthesis()
         }
     }
     
@@ -227,10 +269,13 @@ class ViewController: UIViewController {
             }
             return
         }
+        label.text = "Now, press a gray box for the right paranthesis or the paranthesis again to stop"
+        label.isHidden = false
         myView.isHidden = false
         myView.tag = -6
         stateOfParanthesis = 1
         updateLeftParanthesis()
+        makeRightUnplayedGray()
     }
     
     func playRightTapped(_ sender: UITapGestureRecognizer) {
@@ -242,6 +287,7 @@ class ViewController: UIViewController {
             }
             return
         }
+        label.isHidden = true
         myView.isHidden = false
         myView.tag = -6
         stateOfParanthesis = -1
@@ -288,6 +334,47 @@ class ViewController: UIViewController {
         }
     }
     
+    func makeLeftUnplayedGray() {
+        for image in leftParanthesis {
+            if image.tag == -6 {
+                image.image = UIImage(named: "(")
+            } else {
+                image.image = UIImage(named: "gray")
+            }
+        }
+    }
+    
+    func makeRightUnplayedGray() {
+        for image in rightParanthesis {
+            if image.tag == -6 {
+                image.image = UIImage(named: ")")
+            } else {
+                image.image = UIImage(named: "gray")
+            }
+        }
+    }
+    
+    func checkForPlayContact(view: UIView) {
+        for image in playCards {
+            if view.frame.intersects(image.frame) && image.isHidden {
+                image.tag = view.tag
+                image.image = UIImage(named: String(view.tag))
+                view.isHidden = true
+                image.isHidden = false
+            }
+        }
+    }
+    
+    func originalStartingCard(tag: Int) -> Int {
+        for index in 0...4 {
+            let image = startCards[index]
+            if image.isHidden && image.tag == tag {
+                return index
+            }
+        }
+        return -1
+    }
+    
     func checkCompletion() {
         var numericExpression = ""
         for i in 0...4 {
@@ -319,15 +406,11 @@ class ViewController: UIViewController {
         let expression = NSExpression(format: numericExpression)
         let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
         if result.intValue == answer.tag {
-            print("Right!")
+            label.isHidden = false
+            label.text = "Right!"
         } else {
-            print("Wrong!")
-        }
-    }
-    
-    func test(){
-        for i in 0...10000 {
-            print(brain.randomize())
+            label.isHidden = false
+            label.text = "Wrong!"
         }
     }
 }
