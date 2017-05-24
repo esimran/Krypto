@@ -50,6 +50,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var thirdRightParanthesis: UIImageView!
     @IBOutlet weak var fourthRightParanthesis: UIImageView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var timer: UILabel!
     
     var startCards: [UIImageView] = []
     var playCards: [UIImageView] = []
@@ -63,6 +64,8 @@ class ViewController: UIViewController {
     var originalStartPoints: [CGPoint] = []
     var originalPlayPoints: [CGPoint] = []
     var mark = ""
+    var timerClass = Timer()
+    var time = 0.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,9 +89,9 @@ class ViewController: UIViewController {
             firstRightParanthesis, secondRightParanthesis, thirdRightParanthesis, fourthRightParanthesis
         ]
         setup()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.001, execute: {
-                    self.setPoints()
-                })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001, execute: {
+            self.setPoints()
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -182,7 +185,7 @@ class ViewController: UIViewController {
         updatePlayValues()
         print("reset")
     }
-    
+
     func setPoints() {
         for image in startCards {
             originalStartPoints.append(image.center)
@@ -264,7 +267,7 @@ class ViewController: UIViewController {
     
     func playDragged(_ recognizer: UIPanGestureRecognizer) {
         label.isHidden = false
-        label.text = "Drag to a gray card to switch or release to try a different card"
+        label.text = "Drag to any played card to switch or release to try a different card"
         for image in playCards {
             if image.tag == -1 {
                 image.isHidden = false
@@ -292,8 +295,19 @@ class ViewController: UIViewController {
             for image in playCards {
                 image.isHidden = false
             }
-            if randomFunc(inputView: view) {
-                print("got to randomFunc")
+            var result = randomFunc(inputView: view)
+            let result2 = randomFunc2(inputView: view)
+            if  result != -1 {
+                for image in playCards {
+                    print(image.tag)
+                }
+                print("split")
+                print("index1", index1!)
+                print("index2", result)
+                if index1! == result {
+                    result = result2
+                }
+                switchPlayCards(index1: index1!, index2: result)
                 for image in playCards {
                     print(image.tag)
                     if image.tag != -1 {
@@ -309,23 +323,38 @@ class ViewController: UIViewController {
     }
     
     
-    func randomFunc(inputView: UIView) -> Bool {
-        print("before")
-        for image in playCards {
-            print(image.tag)
+    //SAVING
 
-        }
-                for image in playCards {
-                    if image.frame.intersects(inputView.frame) {
-                        print(String(image.tag), " ", String(inputView.tag))
-                        let temp = inputView.tag
-                        inputView.tag = image.tag
-                        image.tag = temp
-                        print(String(image.tag), " ", String(inputView.tag))
-                        return true
-                    }
+    func randomFunc(inputView: UIView) -> Int {
+        print(inputView.center.x)
+        print(inputView.center.y)
+            for index in 0...4 {
+                let image = playCards[4-index]
+                if image.frame.intersects(inputView.frame) {
+                    return 4-index
                 }
-                return false
+            }
+            return -1
+    }
+    
+    func randomFunc2(inputView: UIView) -> Int {
+        print(inputView.center.x)
+        print(inputView.center.y)
+        for index in 0...4 {
+            let image = playCards[index]
+            if image.frame.intersects(inputView.frame) {
+                return index
+            }
+        }
+        return -1
+    }
+    
+    func switchPlayCards (index1: Int, index2: Int) {
+        let image1 = playCards[index1]
+        let image2 = playCards[index2]
+        let temp = image2.tag
+        image2.tag = image1.tag
+        image1.tag = temp
     }
     
     func defaultOperatorTapped(_ sender: UITapGestureRecognizer) {
