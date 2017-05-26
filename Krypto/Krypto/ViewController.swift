@@ -51,7 +51,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var fourthRightParanthesis: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var timer: UILabel!
-    
     var startCards: [UIImageView] = []
     var playCards: [UIImageView] = []
     var originalValues: [String] = []
@@ -66,6 +65,7 @@ class ViewController: UIViewController {
     var mark = ""
     var timerClass = Timer()
     var time = 0.00
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
