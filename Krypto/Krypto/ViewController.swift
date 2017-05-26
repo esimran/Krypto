@@ -66,6 +66,7 @@ class ViewController: UIViewController {
     var timerClass = Timer()
     var time = 0.00
     
+    //testing
     
     override func viewDidLoad() {
         super.viewDidLoad()
