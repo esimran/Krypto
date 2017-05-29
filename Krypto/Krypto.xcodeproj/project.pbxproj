@@ -15,6 +15,7 @@
 		B11F26B01ECFB70B00E52283 /* KryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F26AF1ECFB70B00E52283 /* KryptoTests.swift */; };
 		B11F26BB1ECFB70B00E52283 /* KryptoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F26BA1ECFB70B00E52283 /* KryptoUITests.swift */; };
 		B178DEBF1ED0FED2002D824A /* KryptoBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */; };
+		B1CF0EFD1ED8928D0088CBD5 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF0EFC1ED8928D0088CBD5 /* Practice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B11F26BA1ECFB70B00E52283 /* KryptoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KryptoUITests.swift; sourceTree = "<group>"; };
 		B11F26BC1ECFB70B00E52283 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KryptoBrain.swift; sourceTree = "<group>"; };
+		B1CF0EFC1ED8928D0088CBD5 /* Practice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				B11F269A1ECFB70B00E52283 /* AppDelegate.swift */,
 				B11F269C1ECFB70B00E52283 /* ViewController.swift */,
+				B1CF0EFC1ED8928D0088CBD5 /* Practice.swift */,
 				B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */,
 				B11F269E1ECFB70B00E52283 /* Main.storyboard */,
 				B11F26A11ECFB70B00E52283 /* Assets.xcassets */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B11F269D1ECFB70B00E52283 /* ViewController.swift in Sources */,
+				B1CF0EFD1ED8928D0088CBD5 /* Practice.swift in Sources */,
 				B178DEBF1ED0FED2002D824A /* KryptoBrain.swift in Sources */,
 				B11F269B1ECFB70B00E52283 /* AppDelegate.swift in Sources */,
 			);

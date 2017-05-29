@@ -8,19 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Practice: UIViewController {
     
     private var brain = KryptoBrain()
     @IBAction func next(_ sender: UIButton) {
         setup()
-        stopTimer()
     }
     @IBAction func reset(_ sender: UIButton) {
         resetValues()
     }
-    @IBAction func krypto(_ sender: UIButton) {
-        inKrypto = true
-        startTimer()
+    @IBAction func check(_ sender: UIButton) {
         checkCompletion()
     }
     @IBOutlet weak var firstCard: UIImageView!
@@ -67,8 +64,7 @@ class ViewController: UIViewController {
     var originalPlayPoints: [CGPoint] = []
     var mark = ""
     var dispatchTimer: DispatchSourceTimer?
-    var time = 30;
-    var inKrypto: Bool = false
+    var time = 0
     
     
     override func viewDidLoad() {
@@ -117,10 +113,10 @@ class ViewController: UIViewController {
             let drag = UIPanGestureRecognizer(target: self, action: #selector(ViewController.startDragged))
             image.addGestureRecognizer(drag)
             
-            image.layer.borderWidth = 2 // as you wish
+            image.layer.borderWidth = 2
             image.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
             image.layer.cornerRadius = 5.0
-
+            
         }
         for image in playCards {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playTapped(_:)))
@@ -167,32 +163,22 @@ class ViewController: UIViewController {
         answer.tag = Int(random)!
         stateOfParanthesis = -1
         label.isHidden = true
-        inKrypto = false
+        startTimer()
     }
     
     func startTimer() {
-        time = 31
+        time = -1
         let queue = DispatchQueue(label: "com.firm.app.timer", attributes: .concurrent)
-        dispatchTimer?.cancel()        // cancel previous timer if any
+        dispatchTimer?.cancel()
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
         dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
         dispatchTimer?.setEventHandler {
-            if self.time > 0 {
-                self.time -= 1
-            } else {
-                self.time = 0
-            }
+            self.time += 1
             DispatchQueue.main.async {
                 self.timer.text = String(self.time)
             }
         }
         dispatchTimer?.resume()
-    }
-    
-    func stopTimer() {
-        dispatchTimer?.cancel()
-        time = 30
-        timer.text = ""
     }
     
     func resetValues() {
@@ -213,10 +199,9 @@ class ViewController: UIViewController {
         stateOfParanthesis = -1
         label.isHidden = true
         updatePlayValues()
-        inKrypto = false
         print("reset")
     }
-
+    
     func setPoints() {
         for image in startCards {
             originalStartPoints.append(image.center)
@@ -347,13 +332,13 @@ class ViewController: UIViewController {
     }
     
     func findSwitchIndex(inputView: UIView) -> Int {
-            for index in 0...4 {
-                let image = playCards[4-index]
-                if image.frame.intersects(inputView.frame) {
-                    return 4-index
-                }
+        for index in 0...4 {
+            let image = playCards[4-index]
+            if image.frame.intersects(inputView.frame) {
+                return 4-index
             }
-            return -1
+        }
+        return -1
     }
     
     func findSwitchIndex2(inputView: UIView) -> Int {
