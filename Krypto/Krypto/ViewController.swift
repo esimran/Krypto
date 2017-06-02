@@ -13,14 +13,11 @@ class ViewController: UIViewController {
     private var brain = KryptoBrain()
     @IBAction func next(_ sender: UIButton) {
         setup()
-        stopTimer()
     }
     @IBAction func reset(_ sender: UIButton) {
         resetValues()
     }
-    @IBAction func krypto(_ sender: UIButton) {
-        inKrypto = true
-        startTimer()
+    @IBAction func check(_ sender: UIButton) {
         checkCompletion()
     }
     @IBOutlet weak var firstCard: UIImageView!
@@ -65,10 +62,12 @@ class ViewController: UIViewController {
     var stateOfParanthesis = -1
     var originalStartPoints: [CGPoint] = []
     var originalPlayPoints: [CGPoint] = []
+    var originalOperatorCardPoints: [CGPoint] = []
+    var originalOperatorPoints: [CGPoint] = []
     var mark = ""
     var dispatchTimer: DispatchSourceTimer?
-    var time = 30;
-    var inKrypto: Bool = false
+    var time = 0
+    var cardIndex = 0
     
     
     override func viewDidLoad() {
@@ -117,10 +116,9 @@ class ViewController: UIViewController {
             let drag = UIPanGestureRecognizer(target: self, action: #selector(ViewController.startDragged))
             image.addGestureRecognizer(drag)
             
-            image.layer.borderWidth = 2 // as you wish
+            image.layer.borderWidth = 2
             image.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
             image.layer.cornerRadius = 5.0
-
         }
         for image in playCards {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playTapped(_:)))
@@ -131,10 +129,14 @@ class ViewController: UIViewController {
             let drag = UIPanGestureRecognizer(target: self, action: #selector(ViewController.playDragged))
             image.addGestureRecognizer(drag)
         }
-        for image in operatorCards{
+        for index in 0...3{
+            let image = operatorCards[index]
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.defaultOperatorTapped(_:)))
+            image.tag = -5 + index
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
+            let drag = UIPanGestureRecognizer(target: self, action: #selector(ViewController.defaultOperatorDragged(_:)))
+            image.addGestureRecognizer(drag)
         }
         for image in operators {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playOperatorTapped(_:)))
@@ -142,6 +144,8 @@ class ViewController: UIViewController {
             image.isUserInteractionEnabled = true
             image.isHidden = true
             image.tag = -1
+            let drag = UIPanGestureRecognizer(target: self, action: #selector(ViewController.playOperatorDragged(_:)))
+            image.addGestureRecognizer(drag)
         }
         for image in leftParanthesis {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.playLeftTapped(_:)))
@@ -167,32 +171,22 @@ class ViewController: UIViewController {
         answer.tag = Int(random)!
         stateOfParanthesis = -1
         label.isHidden = true
-        inKrypto = false
+        startTimer()
     }
     
     func startTimer() {
-        time = 31
+        time = -1
         let queue = DispatchQueue(label: "com.firm.app.timer", attributes: .concurrent)
-        dispatchTimer?.cancel()        // cancel previous timer if any
+        dispatchTimer?.cancel()
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
         dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
         dispatchTimer?.setEventHandler {
-            if self.time > 0 {
-                self.time -= 1
-            } else {
-                self.time = 0
-            }
+            self.time += 1
             DispatchQueue.main.async {
                 self.timer.text = String(self.time)
             }
         }
         dispatchTimer?.resume()
-    }
-    
-    func stopTimer() {
-        dispatchTimer?.cancel()
-        time = 30
-        timer.text = ""
     }
     
     func resetValues() {
@@ -213,16 +207,21 @@ class ViewController: UIViewController {
         stateOfParanthesis = -1
         label.isHidden = true
         updatePlayValues()
-        inKrypto = false
         print("reset")
     }
-
+    
     func setPoints() {
         for image in startCards {
             originalStartPoints.append(image.center)
         }
         for image in playCards {
             originalPlayPoints.append(image.center)
+        }
+        for image in operatorCards {
+            originalOperatorCardPoints.append(image.center)
+        }
+        for image in operators {
+            originalOperatorPoints.append(image.center)
         }
     }
     
@@ -277,7 +276,7 @@ class ViewController: UIViewController {
                 return
             }
             let index1 = originalValues.index(of: "-1")
-            view.center = originalStartPoints[index1!]
+            view.center = originalStartPoints[1]
             originalValues[index1!] = mark
         }
     }
@@ -347,13 +346,13 @@ class ViewController: UIViewController {
     }
     
     func findSwitchIndex(inputView: UIView) -> Int {
-            for index in 0...4 {
-                let image = playCards[4-index]
-                if image.frame.intersects(inputView.frame) {
-                    return 4-index
-                }
+        for index in 0...4 {
+            let image = playCards[4-index]
+            if image.frame.intersects(inputView.frame) {
+                return 4-index
             }
-            return -1
+        }
+        return -1
     }
     
     func findSwitchIndex2(inputView: UIView) -> Int {
@@ -387,6 +386,45 @@ class ViewController: UIViewController {
         image.tag = brain.decode(imageName: imageName)
     }
     
+    func defaultOperatorDragged(_ recognizer: UIPanGestureRecognizer) {
+        label.isHidden = false
+        label.text = "Drag to any played card to switch or release to try a different card"
+        for image in operators {
+            if image.tag == -1 {
+                image.isHidden = false
+                image.image = UIImage(named: "gray")
+            }
+        }
+        let translation = recognizer.translation(in: self.view)
+        let center = recognizer.view!.center
+        if originalOperatorCardPoints.contains(center){
+            cardIndex = originalOperatorCardPoints.index(of: center)!
+        }
+        if let view = recognizer.view {
+            view.center = CGPoint(x:view.center.x + translation.x,
+                                  y:view.center.y + translation.y)
+        }
+        let view = recognizer.view!
+        recognizer.setTranslation(CGPoint.zero, in: self.view)
+        if recognizer.state == UIGestureRecognizerState.ended {
+            for image in operators {
+                image.isHidden = false
+                if view.frame.intersects(image.frame) {
+                    let imageName = brain.convertCardIndex(cardIndex: cardIndex)
+                    image.image = UIImage(named: imageName)
+                    image.tag = brain.decode(imageName: imageName)
+                }
+                if image.tag == -1 {
+                    image.isHidden = true
+                } else {
+                    image.isHidden = false
+                    image.image = UIImage(named: brain.decode(tag: image.tag))
+                }
+            }
+            view.center = originalOperatorCardPoints[cardIndex]
+        }
+    }
+    
     func playOperatorTapped(_ sender: UITapGestureRecognizer) {
         let myView = sender.view!
         if myView.isHidden {
@@ -394,6 +432,47 @@ class ViewController: UIViewController {
         }
         myView.isHidden = true
         myView.tag = -1
+    }
+    
+    func playOperatorDragged(_ recognizer: UIPanGestureRecognizer) {
+        label.isHidden = false
+        label.text = "Drag to any played card to switch or release to try a different card"
+        for image in operators {
+            if image.tag == -1 {
+                image.isHidden = false
+                image.image = UIImage(named: "gray")
+            }
+        }
+        let translation = recognizer.translation(in: self.view)
+        let center = recognizer.view!.center
+        if originalOperatorPoints.contains(center){
+            cardIndex = originalOperatorPoints.index(of: center)!
+        }
+        if let view = recognizer.view {
+            view.center = CGPoint(x:view.center.x + translation.x,
+                                  y:view.center.y + translation.y)
+        }
+        let view = recognizer.view!
+        recognizer.setTranslation(CGPoint.zero, in: self.view)
+        if recognizer.state == UIGestureRecognizerState.ended {
+            for image in operators {
+                image.isHidden = false
+                if view.frame.intersects(image.frame) {
+                    let imageTag = image.tag
+                    image.tag = view.tag
+                    view.tag = imageTag
+                }
+            }
+            for image in operators {
+                if image.tag == -1 {
+                    image.isHidden = true
+                } else {
+                    image.isHidden = false
+                    image.image = UIImage(named: brain.decode(tag: image.tag))
+                }
+            }
+            view.center = originalOperatorPoints[cardIndex]
+        }
     }
     
     func paranthesisTapped(_ sender: UITapGestureRecognizer) {

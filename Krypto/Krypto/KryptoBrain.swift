@@ -62,4 +62,18 @@ struct KryptoBrain {
             return -1
         }
     }
+    
+    public func convertCardIndex(cardIndex: Int) -> String {
+        switch cardIndex {
+        case 0:
+            return "+"
+        case 1:
+            return "-"
+        case 2:
+            return "x"
+        case 3:
+            return "÷"
+        default: return " "
+        }
+    }
 }

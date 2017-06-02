@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ByI-93-HiQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="U8Q-PC-pGT">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -395,10 +395,10 @@
             </objects>
             <point key="canvasLocation" x="17.541229385307346" y="1520.8"/>
         </scene>
-        <!--Practice-->
+        <!--View Controller-->
         <scene sceneID="ub1-dM-0zd">
             <objects>
-                <viewController id="U8Q-PC-pGT" customClass="Practice" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U8Q-PC-pGT" customClass="ViewController" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kbX-DK-Rbm"/>
                         <viewControllerLayoutGuide type="bottom" id="vEU-XD-Sjd"/>
