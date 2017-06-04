@@ -12,3 +12,9 @@ Classroom Sessions <br />
 Mistakes and Things to Remember: <br />
 Making on pictures turned out to be a hassle <br />
 Formatting for the pictures was incorrect, so I had to restart <br />
+Timer resetting images <br />
+Error handling with NSExpression <br />
+<br />
+Bugs Avoided: <br />
+Timer <br />
+Invalid NSExpressionm <br />
