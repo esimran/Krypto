@@ -68,6 +68,14 @@ class ViewController: UIViewController {
     var dispatchTimer: DispatchSourceTimer?
     var time = 0
     var cardIndex = 0
+    var allPoints: [CGPoint] = []
+    var previousPoint: CGPoint = CGPoint.init(x: 0, y: 0)
+    var timerClass = Timer()
+    
+    
+    var  horizontalConstraint = NSLayoutConstraint()
+    var  verticalConstraint = NSLayoutConstraint()
+    
     
     
     override func viewDidLoad() {
@@ -92,7 +100,7 @@ class ViewController: UIViewController {
             firstRightParanthesis, secondRightParanthesis, thirdRightParanthesis, fourthRightParanthesis
         ]
         setup()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
             self.setPoints()
         })
     }
@@ -172,21 +180,35 @@ class ViewController: UIViewController {
         stateOfParanthesis = -1
         label.isHidden = true
         startTimer()
+        secondCard.removeConstraints(secondCard.constraints)
+        horizontalConstraint = NSLayoutConstraint(item: secondCard, attribute: .centerX, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: secondCard.center.x)
+        verticalConstraint = NSLayoutConstraint(item: secondCard, attribute: .centerY, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: secondCard.center.y)
+        secondCard.addConstraints([horizontalConstraint, verticalConstraint])
     }
     
+//    func startTimer() {
+//        time = -1
+//        let queue = DispatchQueue(label: "com.firm.app.timer", attributes: .concurrent)
+//        dispatchTimer?.cancel()
+//        dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
+//        dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
+//        dispatchTimer?.setEventHandler {
+//            self.time += 1
+//            DispatchQueue.main.async {
+////                self.timer.text = String(self.time)
+//            }
+//        }
+//        dispatchTimer?.resume()
+//    }
+    
     func startTimer() {
-        time = -1
-        let queue = DispatchQueue(label: "com.firm.app.timer", attributes: .concurrent)
-        dispatchTimer?.cancel()
-        dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
-        dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
-        dispatchTimer?.setEventHandler {
-            self.time += 1
-            DispatchQueue.main.async {
-                self.timer.text = String(self.time)
-            }
-        }
-        dispatchTimer?.resume()
+        timerClass = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
+    }
+    
+    func action() {
+        time += 1
+        timer.text = String(time)
+        firstCard.center.x = 150
     }
     
     func resetValues() {
@@ -263,6 +285,12 @@ class ViewController: UIViewController {
                                   y:view.center.y + translation.y)
         }
         let view = recognizer.view!
+        
+        
+
+        horizontalConstraint.constant = view.center.x
+        verticalConstraint.constant = view.center.y
+        
         recognizer.setTranslation(CGPoint.zero, in: self.view)
         if recognizer.state == UIGestureRecognizerState.ended {
             updatePlayValues()
@@ -276,7 +304,7 @@ class ViewController: UIViewController {
                 return
             }
             let index1 = originalValues.index(of: "-1")
-            view.center = originalStartPoints[1]
+            view.center = originalStartPoints[index1!]
             originalValues[index1!] = mark
         }
     }
@@ -405,6 +433,8 @@ class ViewController: UIViewController {
                                   y:view.center.y + translation.y)
         }
         let view = recognizer.view!
+        view.layoutIfNeeded()
+        view.setNeedsLayout()
         recognizer.setTranslation(CGPoint.zero, in: self.view)
         if recognizer.state == UIGestureRecognizerState.ended {
             for image in operators {
