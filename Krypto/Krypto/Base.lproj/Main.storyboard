@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ww5-fS-sVq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ByI-93-HiQ">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,10 +30,10 @@
             </objects>
             <point key="canvasLocation" x="19" y="727"/>
         </scene>
-        <!--View Controller-->
+        <!--Multiplayer-->
         <scene sceneID="d4x-r9-jeh">
             <objects>
-                <viewController id="ByI-93-HiQ" customClass="ViewController" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ByI-93-HiQ" customClass="Multiplayer" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ks-mb-bWo"/>
                         <viewControllerLayoutGuide type="bottom" id="UXN-U7-85i"/>
@@ -216,8 +216,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-db-wYz">
-                                <rect key="frame" x="172" y="194" width="323" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="172" y="199.5" width="323" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -414,7 +414,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="(" translatesAutoresizingMaskIntoConstraints="NO" id="gva-5h-TwY">
-                                <rect key="frame" x="119" y="196" width="26" height="179"/>
+                                <rect key="frame" x="120" y="196" width="26" height="179"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="Dgm-If-JpC"/>
                                 </constraints>
@@ -432,10 +432,10 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="11" translatesAutoresizingMaskIntoConstraints="NO" id="s0s-cL-Mht">
-                                <rect key="frame" x="48" y="201" width="40" height="169"/>
+                                <rect key="frame" x="48" y="201" width="41" height="169"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="11" translatesAutoresizingMaskIntoConstraints="NO" id="WF6-Ct-2hJ">
-                                <rect key="frame" x="151" y="201" width="40" height="169"/>
+                                <rect key="frame" x="152" y="201" width="39" height="169"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="11" translatesAutoresizingMaskIntoConstraints="NO" id="fgE-TU-aUF">
                                 <rect key="frame" x="283" y="201" width="40" height="169"/>
@@ -444,7 +444,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="+" translatesAutoresizingMaskIntoConstraints="NO" id="BfY-dS-a5F">
-                                <rect key="frame" x="92" y="252" width="22" height="72"/>
+                                <rect key="frame" x="93" y="252" width="22" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="sZf-AE-OtA"/>
                                 </constraints>
@@ -540,7 +540,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="MQF-MO-m4K">
-                                <rect key="frame" x="297" y="26" width="72" height="84"/>
+                                <rect key="frame" x="296.5" y="26" width="73" height="84"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="10H-ZC-CPC">
@@ -552,21 +552,21 @@
                                 <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="vIZ-9z-kp3">
-                                <rect key="frame" x="197" y="26" width="72" height="84"/>
+                                <rect key="frame" x="197" y="26" width="71.5" height="84"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-Fg-jZP">
-                                <rect key="frame" x="397" y="26" width="72" height="84"/>
+                                <rect key="frame" x="397.5" y="26" width="71.5" height="84"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="-3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x" translatesAutoresizingMaskIntoConstraints="NO" id="9fn-0v-767">
-                                <rect key="frame" x="308" y="110" width="54" height="54"/>
+                                <rect key="frame" x="307.5" y="110" width="55" height="54"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="-2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="÷" translatesAutoresizingMaskIntoConstraints="NO" id="uuc-ui-WbO">
-                                <rect key="frame" x="372" y="110" width="54" height="54"/>
+                                <rect key="frame" x="372.5" y="110" width="53.5" height="54"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="-4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="-" translatesAutoresizingMaskIntoConstraints="NO" id="B0a-Ws-mQQ">
-                                <rect key="frame" x="241" y="110" width="54" height="54"/>
+                                <rect key="frame" x="241" y="110" width="53.5" height="54"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="-5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="+" translatesAutoresizingMaskIntoConstraints="NO" id="RVb-VN-5xo">
                                 <rect key="frame" x="172" y="110" width="54" height="54"/>

@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  Multiplayer.swift
 //  Krypto
 //
-//  Created by Simran Singh on 5/19/17.
+//  Created by Simran Singh on 6/4/17.
 //  Copyright © 2017 Simran Singh. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class Multiplayer: UIViewController {
     
     private var brain = KryptoBrain()
     @IBAction func next(_ sender: UIButton) {
@@ -18,7 +18,11 @@ class ViewController: UIViewController {
         resetValues()
     }
     @IBAction func check(_ sender: UIButton) {
-        checkCompletion()
+        if inKrypto {
+            checkCompletion()
+        } else {
+            setKrypto()
+        }
     }
     @IBOutlet weak var firstCard: UIImageView!
     @IBOutlet weak var secondCard: UIImageView!
@@ -67,10 +71,13 @@ class ViewController: UIViewController {
     var mark = ""
     var dispatchTimer: DispatchSourceTimer?
     var time = 0
+    var kryptoTime = 0
     var cardIndex = 0
     var allPoints: [CGPoint] = []
     var previousPoint: CGPoint = CGPoint.init(x: 0, y: 0)
     var timerClass = Timer()
+    var inKrypto = false
+    var timeUp = UIAlertController()
     
     
     var  horizontalConstraint = NSLayoutConstraint()
@@ -179,7 +186,9 @@ class ViewController: UIViewController {
         answer.tag = Int(random)!
         stateOfParanthesis = -1
         label.isHidden = true
-        startTimer()
+        timeUp = UIAlertController(title: "Time's Up!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        timeUp.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: nil))
+//        startTimer()
 //        secondCard.removeConstraints(secondCard.constraints)
 //        horizontalConstraint = NSLayoutConstraint(item: secondCard, attribute: .centerX, relatedBy: .equal, toItem: secondCard.superview!, attribute: .centerX, multiplier: 1, constant: secondCard.center.x)
 //        verticalConstraint = NSLayoutConstraint(item: secondCard, attribute: .centerY, relatedBy: .equal, toItem: secondCard.superview!, attribute: .centerY, multiplier: 1, constant: secondCard.center.y)
@@ -209,6 +218,29 @@ class ViewController: UIViewController {
 //        time += 1
 //        timer.text = String(time)
 //    }
+    
+    func setKrypto() {
+        inKrypto = true
+        timer.text = "You have 30 seconds! Click the Krypto button to check your answer!"
+        kryptoTime = 3
+        let queue = DispatchQueue(label: "krypto.timer", attributes: .concurrent)
+        dispatchTimer?.cancel()
+        dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
+        dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
+        dispatchTimer?.setEventHandler {
+            self.kryptoTime -= 1
+            if self.kryptoTime < 1 {
+                self.kryptoTime = 0
+            }
+            DispatchQueue.main.async {
+                self.timer.text = String(self.kryptoTime)
+                if self.kryptoTime <= 0 {
+                    self.present(self.timeUp, animated: true, completion: nil)
+                }
+            }
+        }
+        dispatchTimer?.resume()
+    }
     
     func resetValues() {
         for index in 0...4 {

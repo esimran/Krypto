@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10346FF1EE4A6EE0013A043 /* Multiplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10346FE1EE4A6EE0013A043 /* Multiplayer.swift */; };
 		B11F269B1ECFB70B00E52283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F269A1ECFB70B00E52283 /* AppDelegate.swift */; };
 		B11F26A01ECFB70B00E52283 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B11F269E1ECFB70B00E52283 /* Main.storyboard */; };
 		B11F26A21ECFB70B00E52283 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B11F26A11ECFB70B00E52283 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B10346FE1EE4A6EE0013A043 /* Multiplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Multiplayer.swift; sourceTree = "<group>"; };
 		B11F26971ECFB70B00E52283 /* Krypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Krypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11F269A1ECFB70B00E52283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B11F269F1ECFB70B00E52283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				B11F269A1ECFB70B00E52283 /* AppDelegate.swift */,
 				B1CF0EFC1ED8928D0088CBD5 /* ViewController.swift */,
+				B10346FE1EE4A6EE0013A043 /* Multiplayer.swift */,
 				B178DEBE1ED0FED2002D824A /* KryptoBrain.swift */,
 				B11F269E1ECFB70B00E52283 /* Main.storyboard */,
 				B11F26A11ECFB70B00E52283 /* Assets.xcassets */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B10346FF1EE4A6EE0013A043 /* Multiplayer.swift in Sources */,
 				B1CF0EFD1ED8928D0088CBD5 /* ViewController.swift in Sources */,
 				B178DEBF1ED0FED2002D824A /* KryptoBrain.swift in Sources */,
 				B11F269B1ECFB70B00E52283 /* AppDelegate.swift in Sources */,
