@@ -17,7 +17,7 @@ Error handling with NSExpression <br />
 <br />
 Bugs Avoided: <br />
 Timer <br />
-Invalid NSExpressionm <br />
+Invalid NSExpression <br />
 
 Notes: <br />
 MMSpreadsheetView to make better looking score <br />
