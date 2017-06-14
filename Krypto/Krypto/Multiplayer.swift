@@ -68,6 +68,7 @@ class Multiplayer: UIViewController {
     var originalPlayPoints: [CGPoint] = []
     var originalOperatorCardPoints: [CGPoint] = []
     var originalOperatorPoints: [CGPoint] = []
+    var inputNames: [String] = []
     var mark = ""
     var dispatchTimer: DispatchSourceTimer?
     var time = 0
@@ -77,7 +78,12 @@ class Multiplayer: UIViewController {
     var previousPoint: CGPoint = CGPoint.init(x: 0, y: 0)
     var timerClass = Timer()
     var inKrypto = false
-    var timeUp = UIAlertController()
+    var correctAns = UIAlertController()
+    var firstName = ""
+    var secondName = ""
+    var thirdName = ""
+    var fourthName = ""
+    var easyMode = false
     
     
     var  horizontalConstraint = NSLayoutConstraint()
@@ -106,6 +112,9 @@ class Multiplayer: UIViewController {
         rightParanthesis = [
             firstRightParanthesis, secondRightParanthesis, thirdRightParanthesis, fourthRightParanthesis
         ]
+        inputNames = [
+            firstName, secondName, thirdName, fourthName
+        ]
         setup()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
             self.setPoints()
@@ -123,7 +132,7 @@ class Multiplayer: UIViewController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.startTapped(_:)))
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
-            let random = brain.randomize()
+            let random = brain.randomize(easyMode: easyMode)
             originalValues.append(random)
             image.image = UIImage(named: random)
             image.tag = Int(random)!
@@ -181,13 +190,13 @@ class Multiplayer: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.paranthesisTapped))
         paranthesis.addGestureRecognizer(tap)
         paranthesis.isUserInteractionEnabled = true
-        let random = brain.randomize()
+        let random = brain.randomize(easyMode: easyMode)
         answer.image = UIImage(named: random)
         answer.tag = Int(random)!
         stateOfParanthesis = -1
         label.isHidden = true
-        timeUp = UIAlertController(title: "Time's Up!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-        timeUp.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: nil))
+        correctAns = UIAlertController(title: "You got the answer correct!", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        correctAns.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.cancel, handler: nil))
 //        startTimer()
 //        secondCard.removeConstraints(secondCard.constraints)
 //        horizontalConstraint = NSLayoutConstraint(item: secondCard, attribute: .centerX, relatedBy: .equal, toItem: secondCard.superview!, attribute: .centerX, multiplier: 1, constant: secondCard.center.x)
@@ -221,8 +230,8 @@ class Multiplayer: UIViewController {
     
     func setKrypto() {
         inKrypto = true
-        timer.text = "You have 30 seconds! Click the Krypto button to check your answer!"
-        kryptoTime = 3
+        timer.text = "You have 30 seconds! Click the Krypto button again to check your answer!"
+        kryptoTime = 31
         let queue = DispatchQueue(label: "krypto.timer", attributes: .concurrent)
         dispatchTimer?.cancel()
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
@@ -233,9 +242,9 @@ class Multiplayer: UIViewController {
                 self.kryptoTime = 0
             }
             DispatchQueue.main.async {
-                self.timer.text = String(self.kryptoTime)
+//                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
-                    self.present(self.timeUp, animated: true, completion: nil)
+//                    self.present(self.timeUp, animated: true, completion: nil)
                 }
             }
         }

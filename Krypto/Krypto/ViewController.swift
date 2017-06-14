@@ -51,6 +51,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var fourthRightParanthesis: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var timer: UILabel!
+    
     var startCards: [UIImageView] = []
     var playCards: [UIImageView] = []
     var originalValues: [String] = []
@@ -116,7 +117,7 @@ class ViewController: UIViewController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.startTapped(_:)))
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
-            let random = brain.randomize()
+            let random = brain.randomize(easyMode: true)
             originalValues.append(random)
             image.image = UIImage(named: random)
             image.tag = Int(random)!
@@ -174,7 +175,7 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.paranthesisTapped))
         paranthesis.addGestureRecognizer(tap)
         paranthesis.isUserInteractionEnabled = true
-        let random = brain.randomize()
+        let random = brain.randomize(easyMode: true)
         answer.image = UIImage(named: random)
         answer.tag = Int(random)!
         stateOfParanthesis = -1
@@ -680,7 +681,7 @@ class ViewController: UIViewController {
         let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
         if result.intValue == answer.tag {
             label.isHidden = false
-            label.text = "Right!"
+            label.text = "Right! It took you \(String(time)) seconds!"
         } else {
             label.isHidden = false
             label.text = "Wrong!"
