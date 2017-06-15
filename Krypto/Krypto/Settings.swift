@@ -16,13 +16,26 @@ class Settings: UIViewController {
     @IBOutlet weak var fourthName: UITextField!
     @IBOutlet weak var easyMode: UISwitch!
     @IBOutlet weak var startGame: UIButton!
+    var allColors: [UIColor] = [UIColor.green, UIColor.red, UIColor.blue, UIColor.orange]
+    var inputs: [UITextField] = []
+    var names: [String] = []
+    var colors: [UIColor] = []
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        inputs.append(firstName)
+        inputs.append(secondName)
+        inputs.append(thirdName)
+        inputs.append(fourthName)
+        for index in 0...3 {
+            let name = inputs[index].text!
+            if name != "" {
+                names.append(name)
+                colors.append(allColors[index])
+            }
+        }
         let destination: Multiplayer = segue.destination as! Multiplayer
-        destination.firstName = firstName.text!
-        destination.secondName = secondName.text!
-        destination.thirdName = thirdName.text!
-        destination.fourthName = fourthName.text!
+        destination.names = names
+        destination.colors = colors
         destination.easyMode = easyMode.isOn
     }
 }

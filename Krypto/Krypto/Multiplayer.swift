@@ -68,7 +68,6 @@ class Multiplayer: UIViewController {
     var originalPlayPoints: [CGPoint] = []
     var originalOperatorCardPoints: [CGPoint] = []
     var originalOperatorPoints: [CGPoint] = []
-    var inputNames: [String] = []
     var mark = ""
     var dispatchTimer: DispatchSourceTimer?
     var time = 0
@@ -79,11 +78,10 @@ class Multiplayer: UIViewController {
     var timerClass = Timer()
     var inKrypto = false
     var correctAns = UIAlertController()
-    var firstName = ""
-    var secondName = ""
-    var thirdName = ""
-    var fourthName = ""
+    var colors: [UIColor] = []
+    var names: [String] = []
     var easyMode = false
+    var inPrompt = false
     
     
     var  horizontalConstraint = NSLayoutConstraint()
@@ -111,9 +109,6 @@ class Multiplayer: UIViewController {
         ]
         rightParanthesis = [
             firstRightParanthesis, secondRightParanthesis, thirdRightParanthesis, fourthRightParanthesis
-        ]
-        inputNames = [
-            firstName, secondName, thirdName, fourthName
         ]
         setup()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
@@ -237,12 +232,14 @@ class Multiplayer: UIViewController {
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
         dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
         dispatchTimer?.setEventHandler {
-            self.kryptoTime -= 1
-            if self.kryptoTime < 1 {
-                self.kryptoTime = 0
+            if !self.inPrompt {
+                self.kryptoTime -= 1
+                if self.kryptoTime < 1 {
+                    self.kryptoTime = 0
+                }
             }
             DispatchQueue.main.async {
-//                self.timer.text = String(self.kryptoTime)
+                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
 //                    self.present(self.timeUp, animated: true, completion: nil)
                 }

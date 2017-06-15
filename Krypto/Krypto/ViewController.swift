@@ -117,7 +117,7 @@ class ViewController: UIViewController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.startTapped(_:)))
             image.addGestureRecognizer(tap)
             image.isUserInteractionEnabled = true
-            let random = brain.randomize(easyMode: true)
+            let random = brain.randomize(easyMode: false)
             originalValues.append(random)
             image.image = UIImage(named: random)
             image.tag = Int(random)!
@@ -175,7 +175,7 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.paranthesisTapped))
         paranthesis.addGestureRecognizer(tap)
         paranthesis.isUserInteractionEnabled = true
-        let random = brain.randomize(easyMode: true)
+        let random = brain.randomize(easyMode: false)
         answer.image = UIImage(named: random)
         answer.tag = Int(random)!
         stateOfParanthesis = -1

@@ -134,10 +134,10 @@ Any empty spots will not be added</string>
             </objects>
             <point key="canvasLocation" x="-827.13643178410803" y="1520.8"/>
         </scene>
-        <!--View Controller-->
+        <!--Prompt-->
         <scene sceneID="GlD-0I-4bg">
             <objects>
-                <viewController id="8nB-Fc-sZ9" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="8nB-Fc-sZ9" customClass="Prompt" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OWm-ag-551"/>
                         <viewControllerLayoutGuide type="bottom" id="Rmu-J0-Ciy"/>
@@ -146,14 +146,36 @@ Any empty spots will not be added</string>
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAE-5y-f0w">
-                                <rect key="frame" x="146" y="87" width="375" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAE-5y-f0w">
+                                <rect key="frame" x="106" y="74" width="455" height="227"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrM-No-fC9">
+                                <rect key="frame" x="106" y="271" width="455" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="tintColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="Cancel:" destination="8nB-Fc-sZ9" eventType="touchUpInside" id="JEe-Eu-2fo"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="0.24970569349315069" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RAE-5y-f0w" firstAttribute="leading" secondItem="lDw-iY-zz5" secondAttribute="leadingMargin" constant="86" id="D4O-IN-1dW"/>
+                            <constraint firstItem="RAE-5y-f0w" firstAttribute="top" secondItem="OWm-ag-551" secondAttribute="bottom" constant="54" id="Ge1-lA-DRt"/>
+                            <constraint firstItem="RAE-5y-f0w" firstAttribute="centerX" secondItem="lDw-iY-zz5" secondAttribute="centerX" id="MGJ-Q4-t0i"/>
+                            <constraint firstItem="RAE-5y-f0w" firstAttribute="centerY" secondItem="lDw-iY-zz5" secondAttribute="centerY" id="cs1-Wa-trj"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="Cancel" destination="lDw-iY-zz5" id="II2-Yc-Fpc"/>
+                        <outlet property="Popup" destination="lDw-iY-zz5" id="JN3-Pf-cdX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpw-zJ-659" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,6 +323,7 @@ Any empty spots will not be added</string>
                                 <state key="normal" title="Krypto!"/>
                                 <connections>
                                     <action selector="check:" destination="ByI-93-HiQ" eventType="touchUpInside" id="iqc-It-bKw"/>
+                                    <segue destination="8nB-Fc-sZ9" kind="presentation" id="c16-cv-cCH"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="LWl-XT-MCq">
