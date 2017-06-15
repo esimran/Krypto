@@ -8,6 +8,9 @@
 
 import UIKit
 
+var afterPrompt: Bool = false
+var activePlayers: [Int] = []
+
 class Multiplayer: UIViewController {
     
     private var brain = KryptoBrain()
@@ -21,6 +24,7 @@ class Multiplayer: UIViewController {
         if inKrypto {
             checkCompletion()
         } else {
+            performSegue(withIdentifier: "modal", sender: nil)
             setKrypto()
         }
     }
@@ -81,13 +85,10 @@ class Multiplayer: UIViewController {
     var colors: [UIColor] = []
     var names: [String] = []
     var easyMode = false
-    var inPrompt = false
-    
     
     var  horizontalConstraint = NSLayoutConstraint()
     var  verticalConstraint = NSLayoutConstraint()
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,14 +233,17 @@ class Multiplayer: UIViewController {
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
         dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
         dispatchTimer?.setEventHandler {
-            if !self.inPrompt {
+            if afterPrompt {
                 self.kryptoTime -= 1
                 if self.kryptoTime < 1 {
                     self.kryptoTime = 0
+                    afterPrompt = false
+                    self.inKrypto = false
+                    self.dispatchTimer?.cancel()
                 }
             }
             DispatchQueue.main.async {
-                self.timer.text = String(self.kryptoTime)
+//                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
 //                    self.present(self.timeUp, animated: true, completion: nil)
                 }
