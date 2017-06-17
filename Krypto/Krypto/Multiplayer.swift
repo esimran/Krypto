@@ -8,8 +8,10 @@
 
 import UIKit
 
-var afterPrompt: Bool = false
-var activePlayers: [Int] = []
+var GVafterPrompt: Bool = false
+var GVactivePlayers: [String] = []
+var GVactiveColors: [UIColor] = []
+var GVplayable: [Bool] = []
 
 class Multiplayer: UIViewController {
     
@@ -193,6 +195,11 @@ class Multiplayer: UIViewController {
         label.isHidden = true
         correctAns = UIAlertController(title: "You got the answer correct!", message: "", preferredStyle: UIAlertControllerStyle.alert)
         correctAns.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.cancel, handler: nil))
+        GVactiveColors = colors
+        GVactivePlayers = names
+        for index in 0...(GVplayable.endIndex-1) {
+            GVplayable[index] = true
+        }
 //        startTimer()
 //        secondCard.removeConstraints(secondCard.constraints)
 //        horizontalConstraint = NSLayoutConstraint(item: secondCard, attribute: .centerX, relatedBy: .equal, toItem: secondCard.superview!, attribute: .centerX, multiplier: 1, constant: secondCard.center.x)
@@ -227,17 +234,17 @@ class Multiplayer: UIViewController {
     func setKrypto() {
         inKrypto = true
         timer.text = "You have 30 seconds! Click the Krypto button again to check your answer!"
-        kryptoTime = 31
+        kryptoTime = 3
         let queue = DispatchQueue(label: "krypto.timer", attributes: .concurrent)
         dispatchTimer?.cancel()
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
         dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
         dispatchTimer?.setEventHandler {
-            if afterPrompt {
+            if GVafterPrompt {
                 self.kryptoTime -= 1
                 if self.kryptoTime < 1 {
                     self.kryptoTime = 0
-                    afterPrompt = false
+                    GVafterPrompt = false
                     self.inKrypto = false
                     self.dispatchTimer?.cancel()
                 }
@@ -245,7 +252,7 @@ class Multiplayer: UIViewController {
             DispatchQueue.main.async {
 //                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
-//                    self.present(self.timeUp, animated: true, completion: nil)
+                    self.timer.text = "Time's up!"
                 }
             }
         }

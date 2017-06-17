@@ -15,27 +15,48 @@ class Settings: UIViewController {
     @IBOutlet weak var thirdName: UITextField!
     @IBOutlet weak var fourthName: UITextField!
     @IBOutlet weak var easyMode: UISwitch!
-    @IBOutlet weak var startGame: UIButton!
+    @IBAction func StartGame(_ sender: Any) {
+        if passesCheck() {
+            performSegue(withIdentifier: "SettingsSegue", sender: self)
+        }
+    }
     var allColors: [UIColor] = [UIColor.green, UIColor.red, UIColor.blue, UIColor.orange]
     var inputs: [UITextField] = []
     var names: [String] = []
     var colors: [UIColor] = []
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination: Multiplayer = segue.destination as! Multiplayer
+        destination.names = names
+        destination.colors = colors
+        destination.easyMode = easyMode.isOn
+    }
+    
+    func passesCheck() -> Bool {
+        names.removeAll()
+        colors.removeAll()
+        GVplayable.removeAll()
         inputs.append(firstName)
         inputs.append(secondName)
         inputs.append(thirdName)
         inputs.append(fourthName)
         for index in 0...3 {
             let name = inputs[index].text!
-            if name != "" {
-                names.append(name)
-                colors.append(allColors[index])
+            if name != ""  {
+                if !names.contains(name) {
+                    names.append(name)
+                    colors.append(allColors[index])
+                    GVplayable.append(true)
+                } else {
+                    print("Duplicates")
+                    return false
+                }
             }
         }
-        let destination: Multiplayer = segue.destination as! Multiplayer
-        destination.names = names
-        destination.colors = colors
-        destination.easyMode = easyMode.isOn
+        if names.isEmpty || names.endIndex < 2 {
+            print("Need at least two players!")
+            return false
+        }
+        return true
     }
 }

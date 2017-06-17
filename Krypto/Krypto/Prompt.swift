@@ -11,10 +11,6 @@ import UIKit
 class Prompt: UIViewController {
     
     @IBOutlet weak var Popup: UIView!
-    @IBAction func Cancel(_ sender: UIButton) {
-        afterPrompt = true
-        self.dismiss(animated: true, completion: nil)
-    }
     @IBOutlet weak var firstPlayer: UILabel!
     @IBOutlet weak var secondPlayer: UILabel!
     @IBOutlet weak var thirdPlayer: UILabel!
@@ -30,15 +26,30 @@ class Prompt: UIViewController {
         Popup.layer.masksToBounds = true
         for index in 0...3 {
             let label = players[index]
-            let tap = UITapGestureRecognizer(target: self, action: #selector(Prompt.labelTap))
-            label.isUserInteractionEnabled = true
-            label.addGestureRecognizer(tap)
+            if index < GVplayable.endIndex {
+                label.text = GVactivePlayers[index]
+                label.backgroundColor = GVactiveColors[index]
+                if GVplayable[index] {
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(Prompt.labelTap))
+                    label.isUserInteractionEnabled = true
+                    label.addGestureRecognizer(tap)
+                } else {
+                    label.isUserInteractionEnabled = false
+                    label.backgroundColor = UIColor.gray
+                }
+            } else {
+                label.isUserInteractionEnabled = false
+                label.backgroundColor = UIColor.gray
+            }
         }
     }
     
+    
+    
     func labelTap(sender: UITapGestureRecognizer) {
         let label = sender.view
-        afterPrompt = true
+        GVafterPrompt = true
         self.dismiss(animated: true, completion: nil)
+        GVplayable[(label?.tag)!-1] = false
     }
 }
