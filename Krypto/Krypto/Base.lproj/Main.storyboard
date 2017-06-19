@@ -368,28 +368,13 @@ Any empty spots will not be added</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="11" translatesAutoresizingMaskIntoConstraints="NO" id="rTM-XK-nQp">
                                 <rect key="frame" x="608" y="201" width="40" height="169"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7B9-Tc-ZYM">
-                                <rect key="frame" x="617" y="50" width="40" height="34"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="next:" destination="ByI-93-HiQ" eventType="touchUpInside" id="01X-km-7aE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgd-vY-zU5">
-                                <rect key="frame" x="20" y="50" width="40" height="34"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Reset"/>
-                                <connections>
-                                    <action selector="reset:" destination="ByI-93-HiQ" eventType="touchUpInside" id="1FX-Zs-7Mn"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQH-S6-PDS">
-                                <rect key="frame" x="585" y="124" width="72" height="36"/>
+                                <rect key="frame" x="590" y="124" width="66" height="36"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="i3O-IF-n67"/>
-                                    <constraint firstAttribute="width" constant="72" id="zQl-Lj-ARL"/>
+                                    <constraint firstAttribute="height" constant="36" id="6Ej-Tl-f7X"/>
+                                    <constraint firstAttribute="width" constant="66" id="CIj-zj-DXM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="uAq-8T-bRP"/>
                                 </constraints>
                                 <state key="normal" title="Krypto!"/>
                                 <connections>
@@ -443,22 +428,22 @@ Any empty spots will not be added</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUP-bV-Vjp">
-                                <rect key="frame" x="20" y="124" width="94" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgd-vY-zU5">
+                                <rect key="frame" x="11" y="124" width="66" height="36"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="2GQ-Nh-dHt"/>
+                                    <constraint firstAttribute="width" constant="66" id="Kb5-nI-08Y"/>
+                                    <constraint firstAttribute="height" constant="36" id="xnm-TX-1cl"/>
                                 </constraints>
-                                <state key="normal" title="Show Score"/>
+                                <state key="normal" title="Reset"/>
                                 <connections>
-                                    <action selector="showScore:" destination="ByI-93-HiQ" eventType="touchUpInside" id="G8k-Nw-ErN"/>
-                                    <segue destination="6KW-hg-dY8" kind="show" id="yfJ-2e-Rvn"/>
+                                    <action selector="reset:" destination="ByI-93-HiQ" eventType="touchUpInside" id="1FX-Zs-7Mn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Sxq-sA-JRq" firstAttribute="leading" secondItem="Lgd-vY-zU5" secondAttribute="trailing" constant="37" id="1Vt-wH-igR"/>
+                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="baseline" secondItem="MQH-S6-PDS" secondAttribute="firstBaseline" id="1T1-PU-Cg5"/>
                             <constraint firstItem="1CT-rY-1JI" firstAttribute="height" secondItem="RAh-5Z-Pmh" secondAttribute="height" id="1p5-sW-NeD"/>
                             <constraint firstItem="paT-0d-fC6" firstAttribute="bottom" secondItem="sKA-2b-g2V" secondAttribute="bottom" id="2IV-N5-iMo"/>
                             <constraint firstItem="7GI-t3-GXv" firstAttribute="top" secondItem="qrw-qR-xY5" secondAttribute="top" id="2Jh-Lf-L7S"/>
@@ -467,9 +452,8 @@ Any empty spots will not be added</string>
                             <constraint firstItem="obY-Xc-hnC" firstAttribute="top" secondItem="iIZ-hR-6hC" secondAttribute="top" id="3KY-Vb-4iO"/>
                             <constraint firstItem="mjy-oM-zNW" firstAttribute="top" secondItem="7GI-t3-GXv" secondAttribute="top" id="3dv-cK-ni1"/>
                             <constraint firstItem="7GI-t3-GXv" firstAttribute="bottom" secondItem="qrw-qR-xY5" secondAttribute="bottom" id="4Mq-LF-ELG"/>
-                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="top" secondItem="MQH-S6-PDS" secondAttribute="top" id="64I-AO-cao"/>
+                            <constraint firstItem="MQH-S6-PDS" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="104" id="5IG-lc-8XV"/>
                             <constraint firstItem="bQz-DY-eWc" firstAttribute="leading" secondItem="qrw-qR-xY5" secondAttribute="trailing" constant="1" id="6Se-3B-83s"/>
-                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="firstBaseline" secondItem="7B9-Tc-ZYM" secondAttribute="baseline" id="7Pw-vB-cl3"/>
                             <constraint firstItem="UXN-U7-85i" firstAttribute="top" secondItem="twQ-Ed-feW" secondAttribute="bottom" constant="211" id="7Wv-wJ-bVg"/>
                             <constraint firstItem="mgE-VG-gNf" firstAttribute="leading" secondItem="OxA-GE-yeL" secondAttribute="leading" constant="-1" id="7tm-AM-rHO"/>
                             <constraint firstItem="iIZ-hR-6hC" firstAttribute="bottom" secondItem="paT-0d-fC6" secondAttribute="bottom" id="82i-nl-ecy"/>
@@ -477,20 +461,21 @@ Any empty spots will not be added</string>
                             <constraint firstAttribute="trailingMargin" secondItem="NF7-i0-fVC" secondAttribute="trailing" constant="78" id="8kc-ag-a6p"/>
                             <constraint firstItem="3kP-Fp-dj8" firstAttribute="leading" secondItem="RAh-5Z-Pmh" secondAttribute="trailing" constant="15" id="8xr-OP-vI2"/>
                             <constraint firstItem="SVN-i0-Jo1" firstAttribute="leading" secondItem="Y9U-h7-uYc" secondAttribute="trailing" constant="3" id="9Ic-lX-2p3"/>
-                            <constraint firstItem="7B9-Tc-ZYM" firstAttribute="leading" secondItem="NF7-i0-fVC" secondAttribute="trailing" constant="48" id="9R9-bO-9eq"/>
                             <constraint firstItem="uoe-ZB-Ur6" firstAttribute="top" secondItem="mgE-VG-gNf" secondAttribute="top" id="9bx-zx-zsi"/>
+                            <constraint firstItem="RAh-5Z-Pmh" firstAttribute="leading" secondItem="Lgd-vY-zU5" secondAttribute="trailing" constant="95" id="CMe-Vb-wno"/>
                             <constraint firstItem="SaT-Vf-gq5" firstAttribute="top" secondItem="Qjv-lb-wQq" secondAttribute="bottom" id="Cbq-e9-sY9"/>
                             <constraint firstItem="Bmf-P0-hNu" firstAttribute="leading" secondItem="sKA-2b-g2V" secondAttribute="trailing" constant="6" id="Cn3-yF-lrU"/>
-                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="top" secondItem="7B9-Tc-ZYM" secondAttribute="top" id="D36-l8-86J"/>
                             <constraint firstItem="Y9U-h7-uYc" firstAttribute="leading" secondItem="QYI-2K-Jq1" secondAttribute="leadingMargin" constant="-1" id="ELh-qE-SfD"/>
                             <constraint firstItem="NF7-i0-fVC" firstAttribute="width" secondItem="Sxq-sA-JRq" secondAttribute="width" id="EWX-Js-k2W"/>
                             <constraint firstItem="7GI-t3-GXv" firstAttribute="leading" secondItem="paT-0d-fC6" secondAttribute="trailing" constant="5" id="FFx-Iy-Q81"/>
+                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="top" secondItem="MQH-S6-PDS" secondAttribute="top" id="FSf-je-lFU"/>
                             <constraint firstItem="1CT-rY-1JI" firstAttribute="width" secondItem="RAh-5Z-Pmh" secondAttribute="width" id="FbQ-Zm-7p5"/>
                             <constraint firstItem="SaT-Vf-gq5" firstAttribute="height" secondItem="RAh-5Z-Pmh" secondAttribute="height" id="G52-7s-Edg"/>
                             <constraint firstItem="sKA-2b-g2V" firstAttribute="bottom" secondItem="bQz-DY-eWc" secondAttribute="bottom" id="Hfv-cl-avd"/>
                             <constraint firstItem="mgE-VG-gNf" firstAttribute="bottom" secondItem="obY-Xc-hnC" secondAttribute="bottom" id="Ipl-CP-hC8"/>
                             <constraint firstItem="LWl-XT-MCq" firstAttribute="height" secondItem="Sxq-sA-JRq" secondAttribute="height" id="JNV-IY-bj0"/>
                             <constraint firstItem="1CT-rY-1JI" firstAttribute="top" secondItem="LWl-XT-MCq" secondAttribute="bottom" id="Jyf-21-y63"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MQH-S6-PDS" secondAttribute="trailing" constant="-9" id="JzT-Pi-Ket"/>
                             <constraint firstItem="SVN-i0-Jo1" firstAttribute="top" secondItem="Na5-Y2-vdI" secondAttribute="top" id="LVo-bS-swH"/>
                             <constraint firstItem="sKA-2b-g2V" firstAttribute="leading" secondItem="7GI-t3-GXv" secondAttribute="trailing" constant="4" id="M7u-to-3qK"/>
                             <constraint firstItem="Qjv-lb-wQq" firstAttribute="height" secondItem="Sxq-sA-JRq" secondAttribute="height" id="N6L-AP-FJL"/>
@@ -500,7 +485,6 @@ Any empty spots will not be added</string>
                             <constraint firstItem="XlR-lh-3wq" firstAttribute="bottom" secondItem="eY6-qc-dkD" secondAttribute="bottom" id="Nkb-Ca-Xuc"/>
                             <constraint firstItem="mjy-oM-zNW" firstAttribute="leading" secondItem="obY-Xc-hnC" secondAttribute="trailing" constant="5" id="NzA-Rq-MPN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SaT-Vf-gq5" secondAttribute="trailing" constant="152" id="OGl-up-Viv"/>
-                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="leading" secondItem="Lgd-vY-zU5" secondAttribute="leading" id="OJa-Tg-Oaw"/>
                             <constraint firstItem="obY-Xc-hnC" firstAttribute="bottom" secondItem="iIZ-hR-6hC" secondAttribute="bottom" id="Pd9-X1-Ee1"/>
                             <constraint firstItem="Umj-db-wYz" firstAttribute="trailing" secondItem="SaT-Vf-gq5" secondAttribute="trailing" id="PkZ-U3-x9M"/>
                             <constraint firstItem="3kP-Fp-dj8" firstAttribute="top" secondItem="OxA-GE-yeL" secondAttribute="bottom" id="Q9d-03-M6Q"/>
@@ -511,13 +495,10 @@ Any empty spots will not be added</string>
                             <constraint firstItem="twQ-Ed-feW" firstAttribute="leading" secondItem="1CT-rY-1JI" secondAttribute="trailing" constant="10" id="TqQ-pH-aMc"/>
                             <constraint firstItem="Y9U-h7-uYc" firstAttribute="top" secondItem="uoe-ZB-Ur6" secondAttribute="top" id="VcU-df-fRO"/>
                             <constraint firstItem="Umj-db-wYz" firstAttribute="centerY" secondItem="QYI-2K-Jq1" secondAttribute="centerY" constant="17" id="Vs0-nm-usF"/>
+                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="leading" secondItem="QYI-2K-Jq1" secondAttribute="leadingMargin" constant="-9" id="W5z-GS-9M2"/>
                             <constraint firstItem="sKA-2b-g2V" firstAttribute="top" secondItem="bQz-DY-eWc" secondAttribute="top" id="Wdr-TB-bLu"/>
                             <constraint firstItem="nb8-Kk-cgn" firstAttribute="leading" secondItem="bQz-DY-eWc" secondAttribute="trailing" constant="1" id="WpE-xc-uyi"/>
-                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="baseline" secondItem="7B9-Tc-ZYM" secondAttribute="firstBaseline" id="XPI-Tu-eQI"/>
                             <constraint firstItem="mjy-oM-zNW" firstAttribute="bottom" secondItem="7GI-t3-GXv" secondAttribute="bottom" id="YSd-3d-96v"/>
-                            <constraint firstItem="rTM-XK-nQp" firstAttribute="top" secondItem="MQH-S6-PDS" secondAttribute="bottom" constant="41" id="YYu-6m-UmF"/>
-                            <constraint firstItem="7B9-Tc-ZYM" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="30" id="YZK-Wm-gPc"/>
-                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="firstBaseline" secondItem="MQH-S6-PDS" secondAttribute="baseline" id="Ymn-Pl-WXR"/>
                             <constraint firstItem="o8S-Vz-FNL" firstAttribute="trailing" secondItem="NF7-i0-fVC" secondAttribute="trailing" id="Yqs-Rs-arN"/>
                             <constraint firstItem="Na5-Y2-vdI" firstAttribute="top" secondItem="mjy-oM-zNW" secondAttribute="top" id="YsT-2E-rAJ"/>
                             <constraint firstItem="LWl-XT-MCq" firstAttribute="leading" secondItem="OxA-GE-yeL" secondAttribute="trailing" constant="28" id="ZHf-hj-zrr"/>
@@ -527,6 +508,7 @@ Any empty spots will not be added</string>
                             <constraint firstItem="qrw-qR-xY5" firstAttribute="bottom" secondItem="rTM-XK-nQp" secondAttribute="bottom" id="aQl-lD-Xzc"/>
                             <constraint firstItem="Bmf-P0-hNu" firstAttribute="top" secondItem="nb8-Kk-cgn" secondAttribute="top" id="aup-ax-29s"/>
                             <constraint firstItem="twQ-Ed-feW" firstAttribute="height" secondItem="RAh-5Z-Pmh" secondAttribute="height" id="b3R-WC-c4E"/>
+                            <constraint firstItem="MQH-S6-PDS" firstAttribute="leading" secondItem="SaT-Vf-gq5" secondAttribute="trailing" constant="95" id="c65-x5-N7G"/>
                             <constraint firstItem="Qjv-lb-wQq" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="6" id="c95-yO-h1q"/>
                             <constraint firstItem="Qjv-lb-wQq" firstAttribute="leading" secondItem="LWl-XT-MCq" secondAttribute="trailing" constant="28" id="cJq-PW-kqy"/>
                             <constraint firstItem="UXN-U7-85i" firstAttribute="top" secondItem="RAh-5Z-Pmh" secondAttribute="bottom" constant="211" id="ccU-T8-hbi"/>
@@ -534,26 +516,21 @@ Any empty spots will not be added</string>
                             <constraint firstItem="eY6-qc-dkD" firstAttribute="bottom" secondItem="CcZ-I5-mQK" secondAttribute="bottom" id="dV3-G9-SW0"/>
                             <constraint firstItem="UXN-U7-85i" firstAttribute="top" secondItem="SaT-Vf-gq5" secondAttribute="bottom" constant="211" id="f2i-1x-rcz"/>
                             <constraint firstItem="iIZ-hR-6hC" firstAttribute="top" secondItem="paT-0d-fC6" secondAttribute="top" id="gCn-pz-sm0"/>
-                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="trailing" secondItem="XlR-lh-3wq" secondAttribute="trailing" id="gKq-S4-EJQ"/>
                             <constraint firstItem="SaT-Vf-gq5" firstAttribute="leading" secondItem="twQ-Ed-feW" secondAttribute="trailing" constant="15" id="gh6-II-n6v"/>
                             <constraint firstAttribute="bottom" secondItem="Y9U-h7-uYc" secondAttribute="bottom" id="gnZ-lp-57z"/>
                             <constraint firstItem="XlR-lh-3wq" firstAttribute="leading" secondItem="SVN-i0-Jo1" secondAttribute="trailing" constant="4" id="h2T-6K-4Dk"/>
                             <constraint firstItem="obY-Xc-hnC" firstAttribute="leading" secondItem="eY6-qc-dkD" secondAttribute="trailing" constant="4" id="h9U-lJ-nlN"/>
-                            <constraint firstItem="MQH-S6-PDS" firstAttribute="centerY" secondItem="SaT-Vf-gq5" secondAttribute="centerY" constant="5" id="hfy-9X-py0"/>
                             <constraint firstItem="NF7-i0-fVC" firstAttribute="height" secondItem="Sxq-sA-JRq" secondAttribute="height" id="hgr-hd-qcS"/>
                             <constraint firstItem="OxA-GE-yeL" firstAttribute="width" secondItem="Sxq-sA-JRq" secondAttribute="width" id="hiy-PC-gYX"/>
                             <constraint firstItem="1CT-rY-1JI" firstAttribute="leading" secondItem="3kP-Fp-dj8" secondAttribute="trailing" constant="13" id="i1a-Jv-nyk"/>
-                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="baseline" secondItem="MQH-S6-PDS" secondAttribute="firstBaseline" id="iEL-EF-dUF"/>
                             <constraint firstItem="SVN-i0-Jo1" firstAttribute="bottom" secondItem="Na5-Y2-vdI" secondAttribute="bottom" id="iwS-tB-ctJ"/>
                             <constraint firstItem="CcZ-I5-mQK" firstAttribute="leading" secondItem="iIZ-hR-6hC" secondAttribute="trailing" constant="3" id="jf6-OB-aW7"/>
                             <constraint firstItem="OxA-GE-yeL" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="6" id="jo5-nV-vm9"/>
-                            <constraint firstItem="MQH-S6-PDS" firstAttribute="trailing" secondItem="7B9-Tc-ZYM" secondAttribute="trailing" id="jxr-BR-ezS"/>
                             <constraint firstItem="twQ-Ed-feW" firstAttribute="width" secondItem="RAh-5Z-Pmh" secondAttribute="width" id="k6x-ax-wCH"/>
                             <constraint firstItem="uoe-ZB-Ur6" firstAttribute="leading" secondItem="XlR-lh-3wq" secondAttribute="trailing" constant="5" id="kLQ-tk-9lo"/>
                             <constraint firstItem="SaT-Vf-gq5" firstAttribute="top" secondItem="Qjv-lb-wQq" secondAttribute="bottom" id="kLc-PF-GPY"/>
                             <constraint firstItem="Na5-Y2-vdI" firstAttribute="top" secondItem="RAh-5Z-Pmh" secondAttribute="bottom" constant="37" id="kmS-kA-GUP"/>
                             <constraint firstItem="paT-0d-fC6" firstAttribute="leading" secondItem="CcZ-I5-mQK" secondAttribute="trailing" constant="6" id="kqR-Qg-MsL"/>
-                            <constraint firstItem="7B9-Tc-ZYM" firstAttribute="centerY" secondItem="NF7-i0-fVC" secondAttribute="centerY" constant="-1" id="lCA-9R-TyJ"/>
                             <constraint firstItem="RAh-5Z-Pmh" firstAttribute="leading" secondItem="QYI-2K-Jq1" secondAttribute="leadingMargin" constant="152" id="mB8-Xn-EAZ"/>
                             <constraint firstItem="1CT-rY-1JI" firstAttribute="top" secondItem="LWl-XT-MCq" secondAttribute="bottom" id="mIR-NA-eut"/>
                             <constraint firstItem="qrw-qR-xY5" firstAttribute="top" secondItem="rTM-XK-nQp" secondAttribute="top" id="mew-9v-qD9"/>
@@ -566,8 +543,8 @@ Any empty spots will not be added</string>
                             <constraint firstItem="Sxq-sA-JRq" firstAttribute="leading" secondItem="QYI-2K-Jq1" secondAttribute="leadingMargin" constant="77" id="pwN-6F-xPY"/>
                             <constraint firstItem="Qjv-lb-wQq" firstAttribute="width" secondItem="Sxq-sA-JRq" secondAttribute="width" id="qxF-z3-sTl"/>
                             <constraint firstItem="NF7-i0-fVC" firstAttribute="leading" secondItem="Qjv-lb-wQq" secondAttribute="trailing" constant="28" id="rGR-Ye-uXF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7B9-Tc-ZYM" secondAttribute="trailing" constant="-10" id="rfe-dM-Nbc"/>
                             <constraint firstItem="eY6-qc-dkD" firstAttribute="leading" secondItem="mgE-VG-gNf" secondAttribute="trailing" constant="4" id="sEt-7v-ceE"/>
+                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="firstBaseline" secondItem="MQH-S6-PDS" secondAttribute="baseline" id="sLK-DE-CaP"/>
                             <constraint firstItem="NF7-i0-fVC" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="6" id="sOd-LL-NLH"/>
                             <constraint firstItem="Sxq-sA-JRq" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="6" id="sUw-4r-0FW"/>
                             <constraint firstItem="eY6-qc-dkD" firstAttribute="top" secondItem="3kP-Fp-dj8" secondAttribute="bottom" constant="88" id="sXK-wv-cLl"/>
@@ -578,7 +555,6 @@ Any empty spots will not be added</string>
                             <constraint firstItem="Na5-Y2-vdI" firstAttribute="bottom" secondItem="mjy-oM-zNW" secondAttribute="bottom" id="une-DH-k68"/>
                             <constraint firstItem="OxA-GE-yeL" firstAttribute="leading" secondItem="Sxq-sA-JRq" secondAttribute="trailing" constant="28" id="vMI-0Q-RjC"/>
                             <constraint firstItem="mgE-VG-gNf" firstAttribute="leading" secondItem="Na5-Y2-vdI" secondAttribute="trailing" constant="5" id="vRO-rD-7eS"/>
-                            <constraint firstItem="Lgd-vY-zU5" firstAttribute="leading" secondItem="QYI-2K-Jq1" secondAttribute="leadingMargin" id="vVt-iX-bi8"/>
                             <constraint firstItem="UXN-U7-85i" firstAttribute="top" secondItem="NF7-i0-fVC" secondAttribute="bottom" constant="265" id="vXD-Ks-6ch"/>
                             <constraint firstItem="uoe-ZB-Ur6" firstAttribute="bottom" secondItem="mgE-VG-gNf" secondAttribute="bottom" id="vaL-JA-iPo"/>
                             <constraint firstItem="mgE-VG-gNf" firstAttribute="top" secondItem="obY-Xc-hnC" secondAttribute="top" id="vkb-mk-AMv"/>
@@ -1221,7 +1197,7 @@ Any empty spots will not be added</string>
             </objects>
             <point key="canvasLocation" x="18" y="3298"/>
         </scene>
-        <!--Scores-->
+        <!--Custom Collection View Controller-->
         <scene sceneID="Vc9-U5-8p1">
             <objects>
                 <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="WwB-Ai-jhD" customClass="CustomCollectionViewController" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
@@ -1263,7 +1239,20 @@ Any empty spots will not be added</string>
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Scores" id="py5-Tb-XYm"/>
+                    <navigationItem key="navigationItem" id="py5-Tb-XYm">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fza-4B-DHd">
+                            <rect key="frame" x="201" y="7" width="266" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Start Next Round"/>
+                            <connections>
+                                <action selector="startRound:" destination="WwB-Ai-jhD" eventType="touchUpInside" id="5rt-sz-BCt"/>
+                            </connections>
+                        </button>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="ByI-93-HiQ" kind="presentation" identifier="StartRound" id="pCn-q7-R7y"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DH6-XY-DSn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1306,6 +1295,6 @@ Any empty spots will not be added</string>
         <image name="÷" width="250" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tTw-a4-S3H"/>
+        <segue reference="pCn-q7-R7y"/>
     </inferredMetricsTieBreakers>
 </document>

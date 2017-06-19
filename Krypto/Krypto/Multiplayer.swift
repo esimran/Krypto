@@ -13,15 +13,12 @@ var GVnames: [String] = []
 var GVcolors: [UIColor] = []
 var GVplayable: [Bool] = []
 var GVplayingIndex = Int()
-var GVround: Int = 1
-var GVscores : [[Int]] = Array(repeating: Array(repeating: 0, count: 10), count: GVnames.count)
+var GVround: Int = 0
+var GVscores : [[Int]] = Array(repeating: Array(repeating: 0, count: 11), count: GVnames.count)
 
 class Multiplayer: UIViewController {
     
     private var brain = KryptoBrain()
-    @IBAction func next(_ sender: UIButton) {
-        setup()
-    }
     @IBAction func reset(_ sender: UIButton) {
         resetValues()
     }
@@ -32,9 +29,6 @@ class Multiplayer: UIViewController {
             performSegue(withIdentifier: "modal", sender: nil)
             setKrypto()
         }
-    }
-    @IBAction func showScore(_ sender: Any) {
-        performSegue(withIdentifier: "ShowScore", sender: nil)
     }
     @IBOutlet weak var firstCard: UIImageView!
     @IBOutlet weak var secondCard: UIImageView!
@@ -120,7 +114,9 @@ class Multiplayer: UIViewController {
         setup()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
             self.setPoints()
+            self.disableTouch()
         })
+        GVround += 1
     }
     
     override func didReceiveMemoryWarning() {
@@ -234,9 +230,10 @@ class Multiplayer: UIViewController {
 //    }
     
     func setKrypto() {
+        enableTouch()
         inKrypto = true
         timer.text = "You have 30 seconds! Click the Krypto button again to check your answer!"
-        kryptoTime = 3
+        kryptoTime = 5
         let queue = DispatchQueue(label: "krypto.timer", attributes: .concurrent)
         dispatchTimer?.cancel()
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
@@ -254,10 +251,14 @@ class Multiplayer: UIViewController {
             DispatchQueue.main.async {
 //                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
+                    self.timer.text = "Time's up for \(GVnames[GVplayingIndex])"
+                    GVscores[GVplayingIndex][GVround-1] = -1
+                    GVscores[GVplayingIndex][10] -= 1
+                    self.disableTouch()
+                    self.resetValues()
                     if !GVplayable.contains(true){
+                        self.timer.isHidden = true
                         self.performSegue(withIdentifier: "ShowScore", sender: nil)
-                    } else {
-                        self.timer.text = "Time's up for \(GVnames[GVplayingIndex])"
                     }
                 }
             }
@@ -735,10 +736,30 @@ class Multiplayer: UIViewController {
         let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
         if result.intValue == answer.tag {
             label.isHidden = false
+            if GVround == 1 || GVscores[GVplayingIndex][GVround-2] < 1{
+                GVscores[GVplayingIndex][GVround-1] = 1
+                GVscores[GVplayingIndex][10] += 1
+            } else {
+                let addedScore = GVscores[GVplayingIndex][GVround-2]*2
+                GVscores[GVplayingIndex][GVround-1] = addedScore
+                GVscores[GVplayingIndex][10] += addedScore
+            }
             performSegue(withIdentifier: "ShowScore", sender: nil)
         } else {
             label.isHidden = false
             label.text = "Wrong!"
+        }
+    }
+    
+    func enableTouch() {
+        for image in startCards + playCards + operatorCards + operators + leftParanthesis + rightParanthesis{
+            image.isUserInteractionEnabled = true
+        }
+    }
+    
+    func disableTouch() {
+        for image in startCards + playCards + operatorCards + operators + leftParanthesis + rightParanthesis{
+            image.isUserInteractionEnabled = false
         }
     }
 }

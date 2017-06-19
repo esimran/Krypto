@@ -112,11 +112,19 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
                         
                         // Build the UICollectionVieLayoutAttributes for the cell.
                         let cellIndex = IndexPath(item: item, section: section)
-                        let xPos = Double(item) * CELL_WIDTH
+                        var calculatedCellWidth: Double
+                        var xPos: Double
+                        if section == (GVnames.count + 1) && item == 0 {
+                            calculatedCellWidth = CELL_WIDTH * 8
+                            xPos = Double(item) * calculatedCellWidth - CELL_WIDTH * 4
+                        } else {
+                            calculatedCellWidth = CELL_WIDTH
+                            xPos = Double(item) * CELL_WIDTH
+                        }
                         let yPos = Double(section) * CELL_HEIGHT
                         
                         let cellAttributes = UICollectionViewLayoutAttributes(forCellWith: cellIndex)
-                        cellAttributes.frame = CGRect(x: xPos, y: yPos, width: CELL_WIDTH, height: CELL_HEIGHT)
+                        cellAttributes.frame = CGRect(x: xPos, y: yPos, width: calculatedCellWidth, height: CELL_HEIGHT)
                         
                         // Determine zIndex based on cell type.
                         if section == 0 && item == 0 {
