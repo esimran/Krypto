@@ -27,8 +27,8 @@ class Settings: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination: Multiplayer = segue.destination as! Multiplayer
-        destination.names = names
-        destination.colors = colors
+        GVnames = names
+        GVcolors = colors
         destination.easyMode = easyMode.isOn
     }
     

@@ -9,9 +9,12 @@
 import UIKit
 
 var GVafterPrompt: Bool = false
-var GVactivePlayers: [String] = []
-var GVactiveColors: [UIColor] = []
+var GVnames: [String] = []
+var GVcolors: [UIColor] = []
 var GVplayable: [Bool] = []
+var GVplayingIndex = Int()
+var GVround: Int = 1
+var GVscores : [[Int]] = Array(repeating: Array(repeating: 0, count: 10), count: GVnames.count)
 
 class Multiplayer: UIViewController {
     
@@ -29,6 +32,9 @@ class Multiplayer: UIViewController {
             performSegue(withIdentifier: "modal", sender: nil)
             setKrypto()
         }
+    }
+    @IBAction func showScore(_ sender: Any) {
+        performSegue(withIdentifier: "ShowScore", sender: nil)
     }
     @IBOutlet weak var firstCard: UIImageView!
     @IBOutlet weak var secondCard: UIImageView!
@@ -84,8 +90,6 @@ class Multiplayer: UIViewController {
     var timerClass = Timer()
     var inKrypto = false
     var correctAns = UIAlertController()
-    var colors: [UIColor] = []
-    var names: [String] = []
     var easyMode = false
     
     var  horizontalConstraint = NSLayoutConstraint()
@@ -195,8 +199,6 @@ class Multiplayer: UIViewController {
         label.isHidden = true
         correctAns = UIAlertController(title: "You got the answer correct!", message: "", preferredStyle: UIAlertControllerStyle.alert)
         correctAns.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.cancel, handler: nil))
-        GVactiveColors = colors
-        GVactivePlayers = names
         for index in 0...(GVplayable.endIndex-1) {
             GVplayable[index] = true
         }
@@ -252,7 +254,11 @@ class Multiplayer: UIViewController {
             DispatchQueue.main.async {
 //                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
-                    self.timer.text = "Time's up!"
+                    if !GVplayable.contains(true){
+                        self.performSegue(withIdentifier: "ShowScore", sender: nil)
+                    } else {
+                        self.timer.text = "Time's up for \(GVnames[GVplayingIndex])"
+                    }
                 }
             }
         }
@@ -729,7 +735,7 @@ class Multiplayer: UIViewController {
         let result = expression.expressionValue(with: nil, context: nil) as! NSNumber
         if result.intValue == answer.tag {
             label.isHidden = false
-            label.text = "Right!"
+            performSegue(withIdentifier: "ShowScore", sender: nil)
         } else {
             label.isHidden = false
             label.text = "Wrong!"

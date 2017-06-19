@@ -27,8 +27,8 @@ class Prompt: UIViewController {
         for index in 0...3 {
             let label = players[index]
             if index < GVplayable.endIndex {
-                label.text = GVactivePlayers[index]
-                label.backgroundColor = GVactiveColors[index]
+                label.text = GVnames[index]
+                label.backgroundColor = GVcolors[index]
                 if GVplayable[index] {
                     let tap = UITapGestureRecognizer(target: self, action: #selector(Prompt.labelTap))
                     label.isUserInteractionEnabled = true
@@ -50,6 +50,7 @@ class Prompt: UIViewController {
         let label = sender.view
         GVafterPrompt = true
         self.dismiss(animated: true, completion: nil)
+        GVplayingIndex = (label?.tag)!-1
         GVplayable[(label?.tag)!-1] = false
     }
 }

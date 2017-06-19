@@ -249,7 +249,7 @@ Any empty spots will not be added</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zY-ZC-ccT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2.2488755622188905" y="669.60000000000002"/>
+            <point key="canvasLocation" x="743" y="1521"/>
         </scene>
         <!--Multiplayer-->
         <scene sceneID="d4x-r9-jeh">
@@ -388,6 +388,7 @@ Any empty spots will not be added</string>
                                 <rect key="frame" x="585" y="124" width="72" height="36"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="i3O-IF-n67"/>
                                     <constraint firstAttribute="width" constant="72" id="zQl-Lj-ARL"/>
                                 </constraints>
                                 <state key="normal" title="Krypto!"/>
@@ -437,11 +438,23 @@ Any empty spots will not be added</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umj-db-wYz">
-                                <rect key="frame" x="172" y="198.5" width="323" height="12"/>
+                                <rect key="frame" x="172" y="199" width="323" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUP-bV-Vjp">
+                                <rect key="frame" x="20" y="124" width="94" height="36"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="2GQ-Nh-dHt"/>
+                                </constraints>
+                                <state key="normal" title="Show Score"/>
+                                <connections>
+                                    <action selector="showScore:" destination="ByI-93-HiQ" eventType="touchUpInside" id="G8k-Nw-ErN"/>
+                                    <segue destination="6KW-hg-dY8" kind="show" id="yfJ-2e-Rvn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -454,6 +467,7 @@ Any empty spots will not be added</string>
                             <constraint firstItem="obY-Xc-hnC" firstAttribute="top" secondItem="iIZ-hR-6hC" secondAttribute="top" id="3KY-Vb-4iO"/>
                             <constraint firstItem="mjy-oM-zNW" firstAttribute="top" secondItem="7GI-t3-GXv" secondAttribute="top" id="3dv-cK-ni1"/>
                             <constraint firstItem="7GI-t3-GXv" firstAttribute="bottom" secondItem="qrw-qR-xY5" secondAttribute="bottom" id="4Mq-LF-ELG"/>
+                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="top" secondItem="MQH-S6-PDS" secondAttribute="top" id="64I-AO-cao"/>
                             <constraint firstItem="bQz-DY-eWc" firstAttribute="leading" secondItem="qrw-qR-xY5" secondAttribute="trailing" constant="1" id="6Se-3B-83s"/>
                             <constraint firstItem="Lgd-vY-zU5" firstAttribute="firstBaseline" secondItem="7B9-Tc-ZYM" secondAttribute="baseline" id="7Pw-vB-cl3"/>
                             <constraint firstItem="UXN-U7-85i" firstAttribute="top" secondItem="twQ-Ed-feW" secondAttribute="bottom" constant="211" id="7Wv-wJ-bVg"/>
@@ -486,6 +500,7 @@ Any empty spots will not be added</string>
                             <constraint firstItem="XlR-lh-3wq" firstAttribute="bottom" secondItem="eY6-qc-dkD" secondAttribute="bottom" id="Nkb-Ca-Xuc"/>
                             <constraint firstItem="mjy-oM-zNW" firstAttribute="leading" secondItem="obY-Xc-hnC" secondAttribute="trailing" constant="5" id="NzA-Rq-MPN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SaT-Vf-gq5" secondAttribute="trailing" constant="152" id="OGl-up-Viv"/>
+                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="leading" secondItem="Lgd-vY-zU5" secondAttribute="leading" id="OJa-Tg-Oaw"/>
                             <constraint firstItem="obY-Xc-hnC" firstAttribute="bottom" secondItem="iIZ-hR-6hC" secondAttribute="bottom" id="Pd9-X1-Ee1"/>
                             <constraint firstItem="Umj-db-wYz" firstAttribute="trailing" secondItem="SaT-Vf-gq5" secondAttribute="trailing" id="PkZ-U3-x9M"/>
                             <constraint firstItem="3kP-Fp-dj8" firstAttribute="top" secondItem="OxA-GE-yeL" secondAttribute="bottom" id="Q9d-03-M6Q"/>
@@ -502,6 +517,7 @@ Any empty spots will not be added</string>
                             <constraint firstItem="mjy-oM-zNW" firstAttribute="bottom" secondItem="7GI-t3-GXv" secondAttribute="bottom" id="YSd-3d-96v"/>
                             <constraint firstItem="rTM-XK-nQp" firstAttribute="top" secondItem="MQH-S6-PDS" secondAttribute="bottom" constant="41" id="YYu-6m-UmF"/>
                             <constraint firstItem="7B9-Tc-ZYM" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="30" id="YZK-Wm-gPc"/>
+                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="firstBaseline" secondItem="MQH-S6-PDS" secondAttribute="baseline" id="Ymn-Pl-WXR"/>
                             <constraint firstItem="o8S-Vz-FNL" firstAttribute="trailing" secondItem="NF7-i0-fVC" secondAttribute="trailing" id="Yqs-Rs-arN"/>
                             <constraint firstItem="Na5-Y2-vdI" firstAttribute="top" secondItem="mjy-oM-zNW" secondAttribute="top" id="YsT-2E-rAJ"/>
                             <constraint firstItem="LWl-XT-MCq" firstAttribute="leading" secondItem="OxA-GE-yeL" secondAttribute="trailing" constant="28" id="ZHf-hj-zrr"/>
@@ -518,6 +534,7 @@ Any empty spots will not be added</string>
                             <constraint firstItem="eY6-qc-dkD" firstAttribute="bottom" secondItem="CcZ-I5-mQK" secondAttribute="bottom" id="dV3-G9-SW0"/>
                             <constraint firstItem="UXN-U7-85i" firstAttribute="top" secondItem="SaT-Vf-gq5" secondAttribute="bottom" constant="211" id="f2i-1x-rcz"/>
                             <constraint firstItem="iIZ-hR-6hC" firstAttribute="top" secondItem="paT-0d-fC6" secondAttribute="top" id="gCn-pz-sm0"/>
+                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="trailing" secondItem="XlR-lh-3wq" secondAttribute="trailing" id="gKq-S4-EJQ"/>
                             <constraint firstItem="SaT-Vf-gq5" firstAttribute="leading" secondItem="twQ-Ed-feW" secondAttribute="trailing" constant="15" id="gh6-II-n6v"/>
                             <constraint firstAttribute="bottom" secondItem="Y9U-h7-uYc" secondAttribute="bottom" id="gnZ-lp-57z"/>
                             <constraint firstItem="XlR-lh-3wq" firstAttribute="leading" secondItem="SVN-i0-Jo1" secondAttribute="trailing" constant="4" id="h2T-6K-4Dk"/>
@@ -526,6 +543,7 @@ Any empty spots will not be added</string>
                             <constraint firstItem="NF7-i0-fVC" firstAttribute="height" secondItem="Sxq-sA-JRq" secondAttribute="height" id="hgr-hd-qcS"/>
                             <constraint firstItem="OxA-GE-yeL" firstAttribute="width" secondItem="Sxq-sA-JRq" secondAttribute="width" id="hiy-PC-gYX"/>
                             <constraint firstItem="1CT-rY-1JI" firstAttribute="leading" secondItem="3kP-Fp-dj8" secondAttribute="trailing" constant="13" id="i1a-Jv-nyk"/>
+                            <constraint firstItem="KUP-bV-Vjp" firstAttribute="baseline" secondItem="MQH-S6-PDS" secondAttribute="firstBaseline" id="iEL-EF-dUF"/>
                             <constraint firstItem="SVN-i0-Jo1" firstAttribute="bottom" secondItem="Na5-Y2-vdI" secondAttribute="bottom" id="iwS-tB-ctJ"/>
                             <constraint firstItem="CcZ-I5-mQK" firstAttribute="leading" secondItem="iIZ-hR-6hC" secondAttribute="trailing" constant="3" id="jf6-OB-aW7"/>
                             <constraint firstItem="OxA-GE-yeL" firstAttribute="top" secondItem="0ks-mb-bWo" secondAttribute="bottom" constant="6" id="jo5-nV-vm9"/>
@@ -606,6 +624,7 @@ Any empty spots will not be added</string>
                         <outlet property="timer" destination="Umj-db-wYz" id="dkH-hS-1NB"/>
                         <outlet property="times" destination="1CT-rY-1JI" id="jiF-Zt-j7V"/>
                         <segue destination="V6D-T3-k8k" kind="presentation" identifier="modal" id="Nhf-j3-0YT"/>
+                        <segue destination="6KW-hg-dY8" kind="show" identifier="ShowScore" id="tTw-a4-S3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Im2-c0-s1n" sceneMemberID="firstResponder"/>
@@ -1202,6 +1221,77 @@ Any empty spots will not be added</string>
             </objects>
             <point key="canvasLocation" x="18" y="3298"/>
         </scene>
+        <!--Scores-->
+        <scene sceneID="Vc9-U5-8p1">
+            <objects>
+                <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="WwB-Ai-jhD" customClass="CustomCollectionViewController" customModule="Krypto" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" dataMode="prototypes" id="CNB-4S-55z">
+                        <rect key="frame" x="0.0" y="64" width="667" height="311"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                        <collectionViewLayout key="collectionViewLayout" id="9aR-zP-Knp" customClass="CustomCollectionViewLayout" customModule="Krypto" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="9Jc-qR-OZb" customClass="CustomCollectionViewCell" customModule="Krypto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sec 0 / Item 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="92" translatesAutoresizingMaskIntoConstraints="NO" id="AXe-mL-RA7">
+                                            <rect key="frame" x="12" y="8" width="77" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="AXe-mL-RA7" secondAttribute="centerX" id="lmL-y4-uls"/>
+                                    <constraint firstAttribute="centerY" secondItem="AXe-mL-RA7" secondAttribute="centerY" constant="0.5" id="npN-xr-xjP"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="30"/>
+                                <connections>
+                                    <outlet property="label" destination="AXe-mL-RA7" id="HDG-1Y-UZg"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="WwB-Ai-jhD" id="RAn-oS-3Hc"/>
+                            <outlet property="delegate" destination="WwB-Ai-jhD" id="OcK-cc-PWW"/>
+                        </connections>
+                    </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Scores" id="py5-Tb-XYm"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DH6-XY-DSn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="743" y="580"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WU2-Bn-V7q">
+            <objects>
+                <navigationController id="6KW-hg-dY8" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nkZ-La-JDX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6OY-z6-cCY">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="WwB-Ai-jhD" kind="relationship" relationship="rootViewController" id="zkX-5Z-34i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vrQ-PI-jeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18" y="580"/>
+        </scene>
     </scenes>
     <resources>
         <image name="(" width="250" height="350"/>
@@ -1215,4 +1305,7 @@ Any empty spots will not be added</string>
         <image name="x" width="250" height="350"/>
         <image name="÷" width="250" height="350"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tTw-a4-S3H"/>
+    </inferredMetricsTieBreakers>
 </document>

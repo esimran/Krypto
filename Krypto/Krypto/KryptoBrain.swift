@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  KryptoBrain.swift
 //  Krypto
 //
 //  Created by Simran Singh on 5/20/17.
