@@ -30,12 +30,18 @@ class Settings: UIViewController {
         GVnames = names
         GVcolors = colors
         destination.easyMode = easyMode.isOn
+        GVscores = Array(repeating: Array(repeating: 0, count: 11), count: GVnames.count)
     }
     
     func passesCheck() -> Bool {
+        GVafterPrompt = false
+        GVnames = [String()]
+        GVcolors = []
+        GVplayable = []
+        GVplayingIndex = 0
+        GVround = 0
         names.removeAll()
         colors.removeAll()
-        GVplayable.removeAll()
         inputs.append(firstName)
         inputs.append(secondName)
         inputs.append(thirdName)

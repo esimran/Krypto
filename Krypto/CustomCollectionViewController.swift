@@ -13,11 +13,22 @@ let reuseIdentifier = "customCell"
 class CustomCollectionViewController: UICollectionViewController {
     
     @IBAction func startRound(_ sender: Any) {
-        performSegue(withIdentifier: "StartRound", sender: nil)
+        if GVround != 10 {
+            performSegue(withIdentifier: "StartRound", sender: nil)
+        } else {
+            performSegue(withIdentifier: "FinishMulti", sender: nil)
+
+        }
     }
+    @IBOutlet weak var startRoundButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if GVround != 10 {
+            startRoundButton.setTitle("Start Round \(GVround+1)", for: .normal)
+        } else {
+            startRoundButton.setTitle(findWinner(), for: .normal)
+        }
     }
     // MARK: UICollectionViewDataSource
     
@@ -62,5 +73,33 @@ class CustomCollectionViewController: UICollectionViewController {
         } else {
             return ""
         }
+    }
+    func findWinner() -> String {
+        var max = -11
+        var winners: [String] = []
+        for index in 0...GVscores.count - 1 {
+            let playerScore = GVscores[index][10]
+            if playerScore > max {
+                max = playerScore
+            }
+        }
+        for index in 0...GVscores.count - 1 {
+            let playerScore = GVscores[index][10]
+            if playerScore == max {
+                winners.append(GVnames[index])
+            }
+        }
+        var basic = String()
+        if winners.count == 1 {
+            basic = "The winner is \(GVnames[0])"
+        } else {
+            basic = "The winners are:"
+            for name in winners {
+                basic += " " + name
+            }
+            return basic
+        }
+        basic += "! Click here for the main menu."
+        return basic
     }
 }

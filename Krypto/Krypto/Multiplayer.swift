@@ -213,6 +213,17 @@ class Multiplayer: UIViewController {
         dispatchTimer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(1))
         dispatchTimer?.setEventHandler {
             self.time += 1
+            if self.time > 180 {
+                self.timer.isHidden = false
+                self.timer.text = "Time's up!"
+                GVafterPrompt = false
+                self.inKrypto = false
+                self.disableTouch()
+                self.resetValues()
+                sleep(2)
+                self.timer.isHidden = true
+                self.performSegue(withIdentifier: "ShowScore", sender: nil)
+            }
 //            DispatchQueue.main.async {
 //                self.timer.text = String(self.time)
 //            }
@@ -233,7 +244,7 @@ class Multiplayer: UIViewController {
         enableTouch()
         inKrypto = true
         timer.text = "You have 30 seconds! Click the Krypto button again to check your answer!"
-        kryptoTime = 5
+        kryptoTime = 2
         let queue = DispatchQueue(label: "krypto.timer", attributes: .concurrent)
         dispatchTimer?.cancel()
         dispatchTimer = DispatchSource.makeTimerSource(queue: queue)
@@ -252,6 +263,7 @@ class Multiplayer: UIViewController {
 //                self.timer.text = String(self.kryptoTime)
                 if self.kryptoTime <= 0 {
                     self.timer.text = "Time's up for \(GVnames[GVplayingIndex])"
+                    print(GVscores.count)
                     GVscores[GVplayingIndex][GVround-1] = -1
                     GVscores[GVplayingIndex][10] -= 1
                     self.disableTouch()
