@@ -22,3 +22,5 @@ Invalid NSExpression <br />
 Notes: <br />
 MMSpreadsheetView to make better looking score <br />
 Fixing constraints for dragging<br />
+
+Disclaimer: This was created over the summer of 2017 before I had learned about software design, so you'll see some relatively poorly designed code. My design and implementation has gotten much much better.
